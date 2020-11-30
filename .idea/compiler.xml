@@ -7,11 +7,13 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="WEBAPI" />
+        <module name="Projet-Web-API" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Projet-Web-API" options="-parameters" />
       <module name="WEBAPI" options="-parameters" />
     </option>
   </component>

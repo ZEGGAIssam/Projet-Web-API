@@ -34,7 +34,8 @@ public class FirebaseService {
             return null;
         }
     }
-        public String updateUserDetails(Person person) throws ExecutionException, InterruptedException {
+
+    public String updateUserDetails(Person person) throws ExecutionException, InterruptedException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         ApiFuture<WriteResult> collectionsApiFuture = (ApiFuture<WriteResult>) dbFirestore.collection("users").document(String.valueOf(person));
         return collectionsApiFuture.get().getUpdateTime().toString();

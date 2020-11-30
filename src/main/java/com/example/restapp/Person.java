@@ -1,21 +1,42 @@
 package com.example.restapp;
 
+import com.google.type.DateTime;
+
 public class Person {
+
+    private int id;
+
+    private String firstname;
 
     private String name;
 
-    private String age;
+    private DateTime birthday;
 
-    private String location;
-
-    public Person() {
-        super();
-    }
-    public Person(String name, String age, String location) {
-        super();
+    public Person(int id, String firstname, String name, DateTime birthday) {
+        this.id = id;
+        this.firstname = firstname;
         this.name = name;
-        this.age = age;
-        this.location = location;
+        this.birthday = birthday;
+    }
+
+    public String toString() {
+        return "User : " +firstname + " " + name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
     public String getName() {
@@ -26,22 +47,11 @@ public class Person {
         this.name = name;
     }
 
-    public String getAge() {
-        return age;
+    public DateTime getBirthday() {
+        return birthday;
     }
 
-    public void setAge(String age) {
-        this.age = age;
+    public void setBirthday(DateTime birthday) {
+        this.birthday = birthday;
     }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-
-
 }
