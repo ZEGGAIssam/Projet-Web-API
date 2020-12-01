@@ -1,5 +1,7 @@
-package com.example.restapp;
+package com.apiweb.controller;
 
+import com.apiweb.model.Person;
+import com.apiweb.service.FirebaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

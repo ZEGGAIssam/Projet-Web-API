@@ -1,4 +1,4 @@
-package com.example.restapp;
+package com.apiweb.model;
 
 public class Location {
 
