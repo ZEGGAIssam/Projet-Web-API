@@ -1,34 +1,47 @@
 package com.apiweb.model;
 
+import com.apiweb.controller.GenerateId;
+import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.type.DateTime;
+
+import java.util.Date;
 
 public class Person {
 
-    private int id;
+    private String id;
 
     private String firstname;
 
     private String name;
 
-    private DateTime birthday;
+    private Date birthday;
 
-    public Person(int id, String firstname, String name, DateTime birthday) {
+    public Person(String id, String firstname, String name, Date birthday) {
         this.id = id;
         this.firstname = firstname;
         this.name = name;
         this.birthday = birthday;
     }
 
-    public String toString() {
-        return "User : " +firstname + " " + name;
+    public Person(DocumentSnapshot document) {
+        this.id = document.getId();
+        this.firstname = document.getString("firstname");
+        this.name = document.getString("name");
+        this.birthday = document.getDate("birthday");
     }
 
-    public int getId() {
+    public String toString() {
+        return "User : " +firstname + " " + name+ "\nNée le :" + birthday;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setId() {
+        if (this.id == "" || this.id == null) {
+            this.id = GenerateId.generateID();
+        }
     }
 
     public String getFirstname() {
@@ -47,11 +60,11 @@ public class Person {
         this.name = name;
     }
 
-    public DateTime getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(DateTime birthday) {
+    public void setBirthday(Date birthday) {
         this.birthday = birthday;
     }
 }

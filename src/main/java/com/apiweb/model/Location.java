@@ -2,6 +2,8 @@ package com.apiweb.model;
 
 public class Location {
 
+    private int id;
+
     private String number;
 
     private String street;
@@ -12,7 +14,8 @@ public class Location {
 
     private String country;
 
-    public Location(String number, String street, String city, int zipcode, String country) {
+    public Location(int id, String number, String street, String city, int zipcode, String country) {
+        this.id = id;
         this.number = number;
         this.street = street;
         this.city = city;
@@ -25,6 +28,7 @@ public class Location {
         return number + " " + street + ", " + zipcode + " " + city + ", " + country;
     }
 
+    public int getId() { return id; }
     public String getNumber() {
         return number;
     }

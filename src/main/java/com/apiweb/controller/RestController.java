@@ -1,7 +1,7 @@
 package com.apiweb.controller;
 
 import com.apiweb.model.Person;
-import com.apiweb.service.FirebaseService;
+import com.apiweb.service.FirebaseServiceUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,23 +12,25 @@ public class RestController {
 
 
     @Autowired
-    FirebaseService firebaseService;
-
-    @GetMapping("/getUserDetails")
-    public Person getExample(@RequestHeader() String name) throws InterruptedException, ExecutionException {
-        return firebaseService.getUserDetails(name);
+    FirebaseServiceUser firebaseServiceUser;
+    //user route
+    @GetMapping("/User")
+    public String getExample(@RequestHeader String id) throws InterruptedException, ExecutionException {
+        return firebaseServiceUser.getUserDetails(id).toString();
     }
-    @PostMapping("/createUser")
+    @PostMapping("/User")
     public String postExample(@RequestBody Person person) throws InterruptedException, ExecutionException{
-        return firebaseService.saveUserDetails(person);
+        person.setId();
+        System.out.println(person.getId());
+        return firebaseServiceUser.saveUserDetails(person);
     }
 
-    @PutMapping("/updateUser")
+    @PutMapping("/User")
     public String putExample(@RequestBody Person person) throws ExecutionException, InterruptedException {
-        return firebaseService.updateUserDetails(person);
+        return firebaseServiceUser.updateUserDetails(person);
     }
-    @DeleteMapping("/deleteUser")
-    public String deleteExample(@RequestHeader String name)  {
-        return firebaseService.deleteUser(name);
+    @DeleteMapping("/User")
+    public String deleteExample(@RequestParam String id) throws ExecutionException, InterruptedException {
+        return firebaseServiceUser.deleteUser(id);
     }
 }
