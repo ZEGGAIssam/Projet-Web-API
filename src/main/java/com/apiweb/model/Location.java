@@ -1,8 +1,11 @@
 package com.apiweb.model;
 
+import com.apiweb.controller.GenerateId;
+import com.google.cloud.firestore.DocumentSnapshot;
+
 public class Location {
 
-    private int id;
+    private String id;
 
     private String number;
 
@@ -14,7 +17,7 @@ public class Location {
 
     private String country;
 
-    public Location(int id, String number, String street, String city, int zipcode, String country) {
+    public Location(String id, String number, String street, String city, int zipcode, String country) {
         this.id = id;
         this.number = number;
         this.street = street;
@@ -23,12 +26,26 @@ public class Location {
         this.country = country;
     }
 
+    public Location(DocumentSnapshot document) {
+        this.id = document.getId();
+        this.number = document.getString("number");
+        this.street = document.getString("street");
+        this.city = document.getString("city");
+        this.zipcode = Math.toIntExact((long) document.get("zipcode"));
+        this.country = document.getString("country");
+    }
+
     @Override
     public String toString() {
         return number + " " + street + ", " + zipcode + " " + city + ", " + country;
     }
 
-    public int getId() { return id; }
+    public String getId() { return id; }
+    public void setId() {
+        if (this.id == "" || this.id == null) {
+            this.id = GenerateId.generateID();
+        }
+    }
     public String getNumber() {
         return number;
     }

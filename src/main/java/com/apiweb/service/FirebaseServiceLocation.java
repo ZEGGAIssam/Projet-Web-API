@@ -1,8 +1,7 @@
 package com.apiweb.service;
 
-import com.apiweb.model.Person;
+import com.apiweb.model.Location;
 import com.google.api.core.ApiFuture;
-
 import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
@@ -13,35 +12,35 @@ import org.springframework.stereotype.Service;
 import java.util.concurrent.ExecutionException;
 
 @Service
-public class FirebaseServiceUser {
-    public String saveUser(Person person) throws ExecutionException, InterruptedException {
+public class FirebaseServiceLocation {
+    public String saveLocation(Location loc) throws ExecutionException, InterruptedException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection("users").document(person.getId()).set(person);
+        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection("locations").document(loc.getId()).set(loc);
         return collectionsApiFuture.get().getUpdateTime().toString();
 
     }
-    public Person getUser (String id) throws ExecutionException, InterruptedException {
+    public Location getLocation (String id) throws ExecutionException, InterruptedException {
         Firestore dbFireStore = FirestoreClient.getFirestore();
-        DocumentReference documentReference = dbFireStore.collection("users").document(id);
+        DocumentReference documentReference = dbFireStore.collection("locations").document(id);
         ApiFuture<DocumentSnapshot> future = documentReference.get();
         DocumentSnapshot document = future.get();
 
         if(document.exists()) {
-            return new Person(document);
+            return  new Location(document);
         } else {
             return null;
         }
     }
-    public String updateUser(Person person) throws ExecutionException, InterruptedException {
+    public String updateLocation(Location loc) throws ExecutionException, InterruptedException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection("users").document(person.getId()).set(person);
+        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection("locations").document(loc.getId()).set(loc);
         return collectionsApiFuture.get().getUpdateTime().toString();
     }
 
-    public String deleteUser(String id) throws ExecutionException, InterruptedException {
+    public String deleteLocation(String id) throws ExecutionException, InterruptedException {
 
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection("users").document(id).delete();
+        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection("locations").document(id).delete();
         return collectionsApiFuture.get().getUpdateTime().toString();
     }
 }
