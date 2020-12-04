@@ -1,26 +1,39 @@
 package com.apiweb.model;
 
-import com.google.api.client.util.DateTime;
+import com.apiweb.controller.GenerateId;
+import com.google.cloud.firestore.DocumentSnapshot;
 
 import java.util.ArrayList;
+import java.util.Date;
+
+import static com.apiweb.var.DATE;
+import static com.apiweb.var.NAME;
 
 public class Meeting {
 
-    private int id;
+    private String id;
 
     private String name;
 
-    private DateTime date;
+    private Date date;
 
     private Location location;
 
     private ArrayList<Person> contributors;
 
 
-    public Meeting(int id, String name, DateTime date, Location location, ArrayList<Person> contributors) {
+    public Meeting(String id, String name, Date date, Location location, ArrayList<Person> contributors) {
         this.id = id;
         this.name = name;
         this.date = date;
+        this.location = location;
+        this.contributors = contributors;
+    }
+
+    public Meeting(DocumentSnapshot document, Location location, ArrayList<Person> contributors) {
+        this.id = document.getId();
+        this.name = document.getString(NAME);
+        this.date = document.getDate(DATE);
         this.location = location;
         this.contributors = contributors;
     }
@@ -45,15 +58,21 @@ public class Meeting {
         contributors.remove(c);
     }
 
-    public int getId() {
+    public String getId() {
         return id;
+    }
+
+    public void setId() {
+        if (this.id == "" || this.id == null) {
+            this.id = GenerateId.generateID();
+        }
     }
 
     public String getName() {
         return name;
     }
 
-    public DateTime getDate() {
+    public Date getDate() {
         return date;
     }
 
@@ -65,15 +84,11 @@ public class Meeting {
         return contributors;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
-    public void setDate(DateTime date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

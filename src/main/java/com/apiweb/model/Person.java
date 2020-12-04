@@ -2,9 +2,10 @@ package com.apiweb.model;
 
 import com.apiweb.controller.GenerateId;
 import com.google.cloud.firestore.DocumentSnapshot;
-import com.google.type.DateTime;
 
 import java.util.Date;
+
+import static com.apiweb.var.*;
 
 public class Person {
 
@@ -25,9 +26,9 @@ public class Person {
 
     public Person(DocumentSnapshot document) {
         this.id = document.getId();
-        this.firstname = document.getString("firstname");
-        this.name = document.getString("name");
-        this.birthday = document.getDate("birthday");
+        this.firstname = document.getString(FIRSTNAME);
+        this.name = document.getString(NAME);
+        this.birthday = document.getDate(BIRTHDAY);
     }
 
     public String toString() {

@@ -1,4 +1,4 @@
-package com.apiweb.service;
+package com.apiweb.controller;
 
 import com.apiweb.model.Person;
 import com.google.api.core.ApiFuture;
@@ -12,17 +12,19 @@ import org.springframework.stereotype.Service;
 
 import java.util.concurrent.ExecutionException;
 
+import static com.apiweb.var.USERS;
+
 @Service
 public class FirebaseServiceUser {
-    public String saveUser(Person person) throws ExecutionException, InterruptedException {
+    static public String saveUser(Person person) throws ExecutionException, InterruptedException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection("users").document(person.getId()).set(person);
+        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection(USERS).document(person.getId()).set(person);
         return collectionsApiFuture.get().getUpdateTime().toString();
 
     }
-    public Person getUser (String id) throws ExecutionException, InterruptedException {
+    static public Person getUser (String id) throws ExecutionException, InterruptedException {
         Firestore dbFireStore = FirestoreClient.getFirestore();
-        DocumentReference documentReference = dbFireStore.collection("users").document(id);
+        DocumentReference documentReference = dbFireStore.collection(USERS).document(id);
         ApiFuture<DocumentSnapshot> future = documentReference.get();
         DocumentSnapshot document = future.get();
 
@@ -32,16 +34,11 @@ public class FirebaseServiceUser {
             return null;
         }
     }
-    public String updateUser(Person person) throws ExecutionException, InterruptedException {
-        Firestore dbFirestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection("users").document(person.getId()).set(person);
-        return collectionsApiFuture.get().getUpdateTime().toString();
-    }
 
-    public String deleteUser(String id) throws ExecutionException, InterruptedException {
+    static public String deleteUser(String id) throws ExecutionException, InterruptedException {
 
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection("users").document(id).delete();
+        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection(USERS).document(id).delete();
         return collectionsApiFuture.get().getUpdateTime().toString();
     }
 }

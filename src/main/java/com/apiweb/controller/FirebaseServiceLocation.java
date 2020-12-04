@@ -1,4 +1,4 @@
-package com.apiweb.service;
+package com.apiweb.controller;
 
 import com.apiweb.model.Location;
 import com.google.api.core.ApiFuture;
@@ -11,17 +11,19 @@ import org.springframework.stereotype.Service;
 
 import java.util.concurrent.ExecutionException;
 
+import static com.apiweb.var.LOCATIONS;
+
 @Service
 public class FirebaseServiceLocation {
-    public String saveLocation(Location loc) throws ExecutionException, InterruptedException {
+    static public String saveLocation(Location loc) throws ExecutionException, InterruptedException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection("locations").document(loc.getId()).set(loc);
+        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection(LOCATIONS).document(loc.getId()).set(loc);
         return collectionsApiFuture.get().getUpdateTime().toString();
 
     }
-    public Location getLocation (String id) throws ExecutionException, InterruptedException {
+    static public Location getLocation (String id) throws ExecutionException, InterruptedException {
         Firestore dbFireStore = FirestoreClient.getFirestore();
-        DocumentReference documentReference = dbFireStore.collection("locations").document(id);
+        DocumentReference documentReference = dbFireStore.collection(LOCATIONS).document(id);
         ApiFuture<DocumentSnapshot> future = documentReference.get();
         DocumentSnapshot document = future.get();
 
@@ -31,16 +33,11 @@ public class FirebaseServiceLocation {
             return null;
         }
     }
-    public String updateLocation(Location loc) throws ExecutionException, InterruptedException {
-        Firestore dbFirestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection("locations").document(loc.getId()).set(loc);
-        return collectionsApiFuture.get().getUpdateTime().toString();
-    }
 
-    public String deleteLocation(String id) throws ExecutionException, InterruptedException {
+    static public String deleteLocation(String id) throws ExecutionException, InterruptedException {
 
         Firestore dbFirestore = FirestoreClient.getFirestore();
-        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection("locations").document(id).delete();
+        ApiFuture<WriteResult> collectionsApiFuture = dbFirestore.collection(LOCATIONS).document(id).delete();
         return collectionsApiFuture.get().getUpdateTime().toString();
     }
 }

@@ -3,6 +3,8 @@ package com.apiweb.model;
 import com.apiweb.controller.GenerateId;
 import com.google.cloud.firestore.DocumentSnapshot;
 
+import static com.apiweb.var.*;
+
 public class Location {
 
     private String id;
@@ -28,11 +30,11 @@ public class Location {
 
     public Location(DocumentSnapshot document) {
         this.id = document.getId();
-        this.number = document.getString("number");
-        this.street = document.getString("street");
-        this.city = document.getString("city");
-        this.zipcode = Math.toIntExact((long) document.get("zipcode"));
-        this.country = document.getString("country");
+        this.number = document.getString(NUMBER);
+        this.street = document.getString(STREET);
+        this.city = document.getString(CITY);
+        this.zipcode = Math.toIntExact((long) document.get(ZIPCODE));
+        this.country = document.getString(COUNTRY);
     }
 
     @Override
