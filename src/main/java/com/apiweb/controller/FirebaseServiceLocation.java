@@ -28,7 +28,7 @@ public class FirebaseServiceLocation {
         DocumentSnapshot document = future.get();
 
         if(document.exists()) {
-            return  new Location(document);
+            return  null;
         } else {
             return null;
         }

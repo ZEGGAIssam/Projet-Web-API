@@ -15,24 +15,28 @@ public class Person {
 
     private String name;
 
-    private Date birthday;
+    private String username;
+    private String password;
 
-    public Person(String id, String firstname, String name, Date birthday) {
+
+    public Person(String id, String firstname, String name, String username, String password) {
         this.id = id;
         this.firstname = firstname;
         this.name = name;
-        this.birthday = birthday;
+        this.username = username;
+        this.password = password;
     }
 
-    public Person(DocumentSnapshot document) {
-        this.id = document.getId();
-        this.firstname = document.getString(FIRSTNAME);
-        this.name = document.getString(NAME);
-        this.birthday = document.getDate(BIRTHDAY);
+    public Person(String firstname, String name,  String username, String password) {
+        this.id = GenerateId.generateID();
+        this.firstname = firstname;
+        this.name = name;
+        this.username = username;
+        this.password = password;
     }
 
     public String toString() {
-        return "User : " +firstname + " " + name+ "\nNée le :" + birthday;
+        return "User : " +firstname + " " + name;
     }
 
     public String getId() {
@@ -61,11 +65,7 @@ public class Person {
         this.name = name;
     }
 
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
+    public boolean verifiedPsw(String pwd) {
+        return pwd == this.password;
     }
 }

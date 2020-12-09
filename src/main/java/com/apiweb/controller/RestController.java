@@ -1,16 +1,42 @@
 package com.apiweb.controller;
 
 import com.apiweb.model.Location;
-import com.apiweb.model.Meeting;
+import com.apiweb.model.MeetingPoll;
 import com.apiweb.model.Person;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
+import static com.apiweb.var.*;
+
+
 @org.springframework.web.bind.annotation.RestController
 public class RestController {
 
+    private Person current_user = null;
+    //user route
+    @PostMapping("/login")
+    public String getCurrentUser(@RequestBody Map<String, Object> json) throws InterruptedException, ExecutionException {
+        current_user = FirebaseServiceUser.getUser(json.get(LOGIN).toString());
+        if (current_user != null && current_user.verifiedPsw(json.get(PWD).toString()))
+        {
+           System.out.println(current_user);
+          return "connect";
+        }
+        else
+        {
+            return "l'user n'existe pas";
+        }
+    }
+    @CrossOrigin
+    @PostMapping("/register")
+    public String addUser(@RequestBody Map<String, Object> json) throws ExecutionException, InterruptedException {
+        Person userToAdd = new Person(json.get(FIRSTNAME).toString(), json.get(NAME).toString(), json.get(LOGIN).toString(), json.get(PWD).toString());
+        FirebaseServiceUser.saveUser(userToAdd);
+        current_user = userToAdd;
+        return "user add";
+    }
 
     //user route
     @GetMapping("/User")
@@ -35,8 +61,6 @@ public class RestController {
     }
     @PostMapping("/Location")
     public String postLocation(@RequestBody Location location) throws InterruptedException, ExecutionException{
-        location.setId();
-        System.out.println(location.getId());
         return FirebaseServiceLocation.saveLocation(location);
     }
 
@@ -47,13 +71,13 @@ public class RestController {
 
     //route Meeting
     @GetMapping("/Meeting")
-    public Meeting getMeeting(@RequestParam String id) throws Exception {
+    public MeetingPoll getMeeting(@RequestParam String id) throws Exception {
         return FirebaseServiceMeeting.getMeeting(id);
     }
 
     @PostMapping("/Meeting")
-    public String postMeeting(@RequestBody Meeting meeting) throws InterruptedException, ExecutionException {
-        return FirebaseServiceMeeting.saveMeeting(meeting);
+    public String postMeeting(@RequestBody MeetingPoll meetingPoll) throws InterruptedException, ExecutionException {
+        return FirebaseServiceMeeting.saveMeeting(meetingPoll);
     }
 
 

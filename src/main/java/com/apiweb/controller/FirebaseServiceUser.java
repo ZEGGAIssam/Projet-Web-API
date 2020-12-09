@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.concurrent.ExecutionException;
 
-import static com.apiweb.var.USERS;
+import static com.apiweb.var.*;
 
 @Service
 public class FirebaseServiceUser {
@@ -29,7 +29,7 @@ public class FirebaseServiceUser {
         DocumentSnapshot document = future.get();
 
         if(document.exists()) {
-            return new Person(document);
+            return new Person(document.getString(ID), document.getString(FIRSTNAME), document.getString(NAME), document.getString(LOGIN), document.getString(PWD));
         } else {
             return null;
         }
