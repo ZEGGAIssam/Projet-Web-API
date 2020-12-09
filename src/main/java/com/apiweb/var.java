@@ -8,7 +8,7 @@ public class var
     public static final String CONTRIBUTORS = "contributors";
 
     public static final String ID = "id";
-    public static final String LOGIN = "login";
+    public static final String LOGIN = "username";
     public static final String PWD = "password";
     public static final String FIRSTNAME = "firstname";
     public static final String NAME = "name";

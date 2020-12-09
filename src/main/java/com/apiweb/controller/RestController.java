@@ -16,26 +16,31 @@ public class RestController {
 
     private Person current_user = null;
     //user route
+    @CrossOrigin
     @PostMapping("/login")
     public String getCurrentUser(@RequestBody Map<String, Object> json) throws InterruptedException, ExecutionException {
-        current_user = FirebaseServiceUser.getUser(json.get(LOGIN).toString());
+        current_user = FirebaseServiceUser.getConnected(json.get(LOGIN).toString());
         if (current_user != null && current_user.verifiedPsw(json.get(PWD).toString()))
         {
            System.out.println(current_user);
-          return "connect";
+          return "1";
         }
         else
         {
-            return "l'user n'existe pas";
+            return "user ou mdp incorect";
         }
     }
     @CrossOrigin
     @PostMapping("/register")
     public String addUser(@RequestBody Map<String, Object> json) throws ExecutionException, InterruptedException {
-        Person userToAdd = new Person(json.get(FIRSTNAME).toString(), json.get(NAME).toString(), json.get(LOGIN).toString(), json.get(PWD).toString());
-        FirebaseServiceUser.saveUser(userToAdd);
-        current_user = userToAdd;
-        return "user add";
+        if (!FirebaseServiceUser.getLoginAlreadyExist(json.get(LOGIN).toString())) {
+            Person userToAdd = new Person(json.get(FIRSTNAME).toString(), json.get(NAME).toString(), json.get(LOGIN).toString(), json.get(PWD).toString());
+            FirebaseServiceUser.saveUser(userToAdd);
+            current_user = userToAdd;
+            return "1";
+        } else {
+            return "0";
+        }
     }
 
     //user route
@@ -45,7 +50,6 @@ public class RestController {
     }
     @PostMapping("/User")
     public String postUser(@RequestBody Person person) throws InterruptedException, ExecutionException{
-        person.setId(); //ajouter un id si c'est une nouvelle personne
         return FirebaseServiceUser.saveUser(person);
     }
 

@@ -43,29 +43,25 @@ public class Person {
         return id;
     }
 
-    public void setId() {
-        if (this.id == "" || this.id == null) {
-            this.id = GenerateId.generateID();
-        }
-    }
 
     public String getFirstname() {
         return firstname;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public String getUsername()
+    {
+        return username;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getPassword() {
+        return password;
     }
 
     public boolean verifiedPsw(String pwd) {
-        return pwd == this.password;
+        return pwd.equals(this.password);
     }
 }
