@@ -7,7 +7,7 @@ import java.util.Date;
 
 import static com.apiweb.var.*;
 
-public class Person {
+public class User {
 
     private String id;
 
@@ -19,7 +19,7 @@ public class Person {
     private String password;
 
 
-    public Person(String id, String firstname, String name, String username, String password) {
+    public User(String id, String firstname, String name, String username, String password) {
         this.id = id;
         this.firstname = firstname;
         this.name = name;
@@ -27,7 +27,7 @@ public class Person {
         this.password = password;
     }
 
-    public Person(String firstname, String name,  String username, String password) {
+    public User(String firstname, String name, String username, String password) {
         this.id = GenerateId.generateID();
         this.firstname = firstname;
         this.name = name;

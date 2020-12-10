@@ -17,22 +17,22 @@ public class MeetingPoll {
 
     private String name;
 
-    private HashMap<Date, Integer> choixDate ;
+    private HashMap<String, Long> choixDate ;
 
-    private HashMap<Location, Internal> location;
+    private HashMap<String, Long> choixLocation;
 
-    public MeetingPoll(String name, HashMap<Date, Integer> choixDate, HashMap<Location, Internal> location) {
+    public MeetingPoll(String name, HashMap<String, Long> choixDate, HashMap<String, Long> choixLocation) {
         this.id = GenerateId.generateID();
         this.name = name;
         this.choixDate = choixDate;
-        this.location = location;
+        this.choixLocation = choixLocation;
     }
 
-    public MeetingPoll(String id, String name, HashMap<Date, Integer> choixDate, HashMap<Location, Internal> location) {
+    public MeetingPoll(String id, String name, HashMap<String, Long> choixDate, HashMap<String, Long> choixLocation) {
         this.id = id;
         this.name = name;
         this.choixDate = choixDate;
-        this.location = location;
+        this.choixLocation = choixLocation;
     }
 
     public String getId() {
@@ -43,11 +43,23 @@ public class MeetingPoll {
         return name;
     }
 
-    public HashMap<Date, Integer> getChoixDate() {
+    public HashMap<String, Long> getChoixDate() {
         return choixDate;
     }
 
-    public HashMap<Location, Internal> getLocation() {
-        return location;
+    public HashMap<String, Long> getLocation() {
+        return choixLocation;
+    }
+
+    public void addVoteLocation(String key)
+    {
+        Long nbVote = choixLocation.get(key);
+        choixLocation.put(key,  nbVote+1 );
+    }
+
+    public void addVoteDate(String key)
+    {
+        Long nbVote = choixDate.get(key);
+        choixDate.put(key, nbVote+1 );
     }
 }

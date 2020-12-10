@@ -1,22 +1,30 @@
 package com.apiweb.controller;
 
-import com.apiweb.model.Location;
 import com.apiweb.model.MeetingPoll;
-import com.apiweb.model.Person;
+import com.apiweb.model.User;
+import com.google.cloud.firestore.DocumentReference;
+import com.google.cloud.firestore.DocumentSnapshot;
+import com.google.cloud.firestore.Firestore;
+import com.google.cloud.firestore.QueryDocumentSnapshot;
+import com.google.firebase.cloud.FirestoreClient;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Map;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 
 import static com.apiweb.var.*;
 
-
+@CrossOrigin
 @org.springframework.web.bind.annotation.RestController
 public class RestController {
 
-    private Person current_user = null;
-    //user route
-    @CrossOrigin
+    private User current_user = null;
+    private MeetingPoll current_meeting = null;
+
+    //user routed
     @PostMapping("/login")
     public String getCurrentUser(@RequestBody Map<String, Object> json) throws InterruptedException, ExecutionException {
         current_user = FirebaseServiceUser.getConnected(json.get(LOGIN).toString());
@@ -27,15 +35,15 @@ public class RestController {
         }
         else
         {
-            return "user ou mdp incorect";
+            current_user = null;
+            return "0";
         }
     }
-    @CrossOrigin
     @PostMapping("/register")
     public String addUser(@RequestBody Map<String, Object> json) throws ExecutionException, InterruptedException {
         if (!FirebaseServiceUser.getLoginAlreadyExist(json.get(LOGIN).toString())) {
-            Person userToAdd = new Person(json.get(FIRSTNAME).toString(), json.get(NAME).toString(), json.get(LOGIN).toString(), json.get(PWD).toString());
-            FirebaseServiceUser.saveUser(userToAdd);
+            User userToAdd = new User(json.get(FIRSTNAME).toString(), json.get(NAME).toString(), json.get(LOGIN).toString(), json.get(PWD).toString());
+            FirebaseServiceUser.save(userToAdd);
             current_user = userToAdd;
             return "1";
         } else {
@@ -43,55 +51,40 @@ public class RestController {
         }
     }
 
-    //user route
-    @GetMapping("/User")
-    public Person getUser(@RequestParam String id) throws InterruptedException, ExecutionException {
-        return (FirebaseServiceUser.getUser(id));
-    }
-    @PostMapping("/User")
-    public String postUser(@RequestBody Person person) throws InterruptedException, ExecutionException{
-        return FirebaseServiceUser.saveUser(person);
-    }
 
-    @DeleteMapping("/User")
-    public String deleteUser(@RequestParam String id) throws ExecutionException, InterruptedException {
-        return FirebaseServiceUser.deleteUser(id);
-    }
+    @PostMapping("/createMeetingPoll")
+    public String addMeetingPoll(@RequestBody Map<String, Object> json) throws InterruptedException, ExecutionException, ParseException {
+        HashMap choixDate = new HashMap<Date, Long>();
+        choixDate.put(json.get("date1").toString(), 0);
+        choixDate.put(json.get("date2").toString(), 0);
+        choixDate.put(json.get("date3").toString(), 0);
+        HashMap choixLoc = new HashMap<String, Long>();
+        choixLoc.put(json.get("location1").toString(), 0);
+        choixLoc.put(json.get("location2").toString(), 0);
+        choixLoc.put(json.get("location3").toString(), 0);
+        MeetingPoll meetingPoll = new MeetingPoll(json.get("name").toString(), choixDate, choixLoc );
+        FirebaseServiceMeetingPoll.add(meetingPoll);
+        return "1";
 
-    //location route
-    @GetMapping("/Location")
-    public Location getLocation(@RequestParam String id) throws InterruptedException, ExecutionException {
-        return (FirebaseServiceLocation.getLocation(id));
-    }
-    @PostMapping("/Location")
-    public String postLocation(@RequestBody Location location) throws InterruptedException, ExecutionException{
-        return FirebaseServiceLocation.saveLocation(location);
-    }
-
-    @DeleteMapping("/Location")
-    public String deleteLocation(@RequestParam String id) throws ExecutionException, InterruptedException {
-        return FirebaseServiceLocation.deleteLocation(id);
-    }
-
-    //route Meeting
-    @GetMapping("/Meeting")
-    public MeetingPoll getMeeting(@RequestParam String id) throws Exception {
-        return FirebaseServiceMeeting.getMeeting(id);
-    }
-
-    @PostMapping("/Meeting")
-    public String postMeeting(@RequestBody MeetingPoll meetingPoll) throws InterruptedException, ExecutionException {
-        return FirebaseServiceMeeting.saveMeeting(meetingPoll);
     }
 
 
-    @DeleteMapping("/Meeting")
-    public String deleteMeeting(@RequestParam String id) throws InterruptedException, ExecutionException {
-        return FirebaseServiceMeeting.deleteMeeting(id);
+    @GetMapping("/getMeeting")
+    public String getMeeting(@RequestBody Map<String, Object> json) throws InterruptedException, ExecutionException {
+        current_meeting = FirebaseServiceMeetingPoll.get(json.get(ID).toString());
+        return  current_meeting.getName();
     }
 
-    @PostMapping("/addContributorMeeting")
-    public String addContributorMeeting(@RequestBody Map<String, Object> json) throws ExecutionException, InterruptedException {
-        return FirebaseServiceContributor.addContributortoMeeting(json);
+    @PostMapping("/saveVote")
+    public void addVoteLocation(@RequestBody Map<String, Object> json) throws InterruptedException, ExecutionException, ParseException {
+        current_meeting.addVoteLocation(json.get("voteLocation").toString());
+        current_meeting.addVoteDate(json.get("voteDate").toString());
+        FirebaseServiceMeetingPoll.saveMeeting(current_meeting);
     }
+
+    @GetMapping("/getAllMeetingId")
+    public ArrayList<String> getAllMeeting() throws InterruptedException, ExecutionException {
+        return  FirebaseServiceMeetingPoll.getAllId();
+    }
+
 }
