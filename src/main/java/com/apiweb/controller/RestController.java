@@ -77,9 +77,9 @@ public class RestController {
 
     @PostMapping("/saveVote")
     public void addVoteLocation(@RequestBody Map<String, Object> json) throws InterruptedException, ExecutionException, ParseException {
-        current_meeting.addVoteLocation(json.get("voteLocation").toString());
-        current_meeting.addVoteDate(json.get("voteDate").toString());
+        current_meeting.addVote(json.get("voteLocation").toString(), json.get("voteDate").toString(), current_user);
         FirebaseServiceMeetingPoll.saveMeeting(current_meeting);
+        FirebaseServiceUser.save(current_user);
     }
 
     @GetMapping("/getAllMeetingId")

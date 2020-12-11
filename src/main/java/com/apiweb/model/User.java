@@ -3,6 +3,7 @@ package com.apiweb.model;
 import com.apiweb.controller.GenerateId;
 import com.google.cloud.firestore.DocumentSnapshot;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import static com.apiweb.var.*;
@@ -17,14 +18,16 @@ public class User {
 
     private String username;
     private String password;
+    private ArrayList<String> idMeetingVoted;
 
 
-    public User(String id, String firstname, String name, String username, String password) {
+    public User(String id, String firstname, String name, String username, String password, ArrayList<String> idMeetingVoted) {
         this.id = id;
         this.firstname = firstname;
         this.name = name;
         this.username = username;
         this.password = password;
+        this.idMeetingVoted = idMeetingVoted;
     }
 
     public User(String firstname, String name, String username, String password) {
@@ -33,6 +36,7 @@ public class User {
         this.name = name;
         this.username = username;
         this.password = password;
+        this.idMeetingVoted = new ArrayList<String>();
     }
 
     public String toString() {
@@ -63,5 +67,14 @@ public class User {
 
     public boolean verifiedPsw(String pwd) {
         return pwd.equals(this.password);
+    }
+
+    public void addId(String id) {
+        idMeetingVoted.add(id);
+    }
+
+    public ArrayList<String> getIdMeetingVoted()
+    {
+        return  idMeetingVoted;
     }
 }

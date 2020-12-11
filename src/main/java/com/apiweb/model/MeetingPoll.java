@@ -47,19 +47,15 @@ public class MeetingPoll {
         return choixDate;
     }
 
-    public HashMap<String, Long> getLocation() {
+    public HashMap<String, Long> getChoixLocation() {
         return choixLocation;
     }
 
-    public void addVoteLocation(String key)
-    {
-        Long nbVote = choixLocation.get(key);
-        choixLocation.put(key,  nbVote+1 );
-    }
-
-    public void addVoteDate(String key)
-    {
-        Long nbVote = choixDate.get(key);
-        choixDate.put(key, nbVote+1 );
+    public void addVote(String keyLoc, String keyDate, User user) {
+        Long nbDateVote = choixDate.get(keyDate);
+        choixDate.put(keyDate, nbDateVote+1 );
+        Long nbLocVote = choixLocation.get(keyLoc);
+        choixLocation.put(keyLoc,  nbLocVote+1 );
+        user.addId(this.id);
     }
 }

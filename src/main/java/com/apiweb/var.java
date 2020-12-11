@@ -12,7 +12,7 @@ public class var
     public static final String NAME = "name";
     public static final String DATE = "date";
     public static final String CHOIX_DATE = "choixDate";
-    public static final String CHOIX_LOC = "location";
+    public static final String CHOIX_LOC = "choixLocation";
     public static final String USER_ID = "user_id";
 
 

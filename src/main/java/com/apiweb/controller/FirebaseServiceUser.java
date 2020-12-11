@@ -7,6 +7,7 @@ import com.google.cloud.firestore.*;
 import com.google.firebase.cloud.FirestoreClient;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -27,7 +28,7 @@ public class FirebaseServiceUser {
         if (documentReference.size() == 1)
         {
             QueryDocumentSnapshot document = documentReference.get(0);
-            User p = new User(document.getString(ID), document.getString(FIRSTNAME), document.getString(NAME), document.getString(LOGIN), document.getString(PWD));
+            User p = new User(document.getString(ID), document.getString(FIRSTNAME), document.getString(NAME), document.getString(LOGIN), document.getString(PWD), new ArrayList<String>());
             return  p;
         }
         else {
