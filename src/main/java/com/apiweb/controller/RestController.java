@@ -62,7 +62,7 @@ public class RestController {
         choixLoc.put(json.get("location1").toString(), 0);
         choixLoc.put(json.get("location2").toString(), 0);
         choixLoc.put(json.get("location3").toString(), 0);
-        MeetingPoll meetingPoll = new MeetingPoll(json.get("name").toString(), choixDate, choixLoc );
+        MeetingPoll meetingPoll = new MeetingPoll(json.get(NAME).toString(), choixDate, choixLoc );
         FirebaseServiceMeetingPoll.add(meetingPoll);
         return "1";
 
@@ -82,9 +82,9 @@ public class RestController {
         FirebaseServiceUser.save(current_user);
     }
 
-    @GetMapping("/getAllMeetingId")
-    public ArrayList<String> getAllMeeting() throws InterruptedException, ExecutionException {
-        return  FirebaseServiceMeetingPoll.getAllId();
+    @GetMapping("/getAllMeeting")
+    public ArrayList<Object> getAllMeeting() throws InterruptedException, ExecutionException {
+        return  FirebaseServiceMeetingPoll.getAll();
     }
 
 }

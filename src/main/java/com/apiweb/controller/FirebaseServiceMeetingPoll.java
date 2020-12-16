@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 import static com.apiweb.var.*;
@@ -52,14 +53,15 @@ public class FirebaseServiceMeetingPoll {
         }
     }
 
-    public static ArrayList<String> getAllId() throws ExecutionException, InterruptedException {
+    public static ArrayList<Object> getAll() throws ExecutionException, InterruptedException {
         Firestore dbFireStore = FirestoreClient.getFirestore();
         Iterable<DocumentReference> documentList = dbFireStore.collection(MEETINGS).listDocuments();
-        ArrayList<String> arString = new ArrayList<>();
+        ArrayList<Object> arObject = new ArrayList<>();
         for ( DocumentReference d: documentList) {
-            arString.add(d.get().get().getString(NAME));
+            arObject.add(d.get().get().getData());
         }
-        return arString;
+        return arObject;
     }
+
 }
 
