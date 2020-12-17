@@ -4,6 +4,7 @@ import com.apiweb.model.Authentification;
 import com.apiweb.model.MeetingPoll;
 import com.apiweb.model.User;
 import com.google.firebase.auth.FirebaseAuthException;
+import com.google.rpc.context.AttributeContext;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
@@ -85,8 +86,14 @@ public class RestController {
     }
 
     @GetMapping("/getAllMeeting")
-    public ArrayList<Object> getAllMeeting() throws InterruptedException, ExecutionException {
-        return  FirebaseServiceMeetingPoll.getAll();
+    public ArrayList<Object> getAllMeeting(@RequestBody Map<String, Object> json) throws InterruptedException, ExecutionException {
+        if (Authentification.isValid(json.get(TOKEN).toString())) {
+            return FirebaseServiceMeetingPoll.getAll();
+        }
+        else
+        {
+            return null;
+        }
     }
 
 }

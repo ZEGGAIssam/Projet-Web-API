@@ -4,38 +4,8 @@
 <head>
     <title>Register</title>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script>
-    const POST = "POST";
-    const GET = "GET";
-    const domaine ="http://localhost:8080/";
-    $.ajaxSetup({
-      contentType: "application/json; charset=utf-8"
-    });
-    $(document).ready(function(){
-        $("#registerSend").click(function(){
-            var username = $("#loginRegister").val().trim();
-            var password = $("#passwordRegister").val().trim();
-            var firstname = $("#firstnameRegister").val().trim();
-            var name = $("#nameRegister").val().trim();
-
-            if( username != "" && password != ""  && firstname != "" && name  != "" ){
-                $.ajax({
-                    url:"http://localhost:8080/register",
-                    type:POST,
-                    data:JSON.stringify({name:name,firstname:firstname, username:username, password:password}),
-                    success:function(response){
-                        var msg = "";
-                        console.log(response)
-                        if(response == 1){
-                            alert("let's go");
-                        }else{
-                            alert(response);
-                        }
-                    }
-                });
-            }
-        });
-    });
+    <script src="../static/var.js"> </script>
+    <script src="../static/register.js"> </script>
     </script>
     <style>
           body{
