@@ -7,6 +7,9 @@ import com.google.firebase.auth.FirebaseAuthException;
 import com.google.rpc.context.AttributeContext;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.text.ParseException;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
@@ -22,12 +25,13 @@ public class RestController {
 
     //user routed
     @PostMapping("/login")
-    public String getCurrentUser(@RequestBody Map<String, Object> json) throws InterruptedException, ExecutionException {
+    public String getCurrentUser(@RequestBody  Map<String, Object> json, HttpServletResponse response) throws InterruptedException, ExecutionException {
         User current_user = FirebaseServiceUser.getConnected(json.get(LOGIN).toString());
         if (current_user != null && current_user.verifiedPsw(json.get(PWD).toString()))
         {
-           System.out.println(current_user);
-          return Authentification.generateToken(current_user);
+            System.out.println(current_user);
+            response.setHeader("Set-Cookie", TOKEN+"=" + Authentification.generateToken(current_user) + ";HttpOnly; SameSite=strict");
+            return "1";
         }
         else
         {
@@ -86,14 +90,9 @@ public class RestController {
     }
 
     @GetMapping("/getAllMeeting")
-    public ArrayList<Object> getAllMeeting(@RequestBody Map<String, Object> json) throws InterruptedException, ExecutionException {
-        if (Authentification.isValid(json.get(TOKEN).toString())) {
-            return FirebaseServiceMeetingPoll.getAll();
-        }
-        else
-        {
-            return null;
-        }
+    public ArrayList<Object> getAllMeeting(HttpServletRequest resquest) throws InterruptedException, ExecutionException {
+        resquest.getCookies();
+        return FirebaseServiceMeetingPoll.getAll();
     }
 
 }
