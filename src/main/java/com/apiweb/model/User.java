@@ -77,4 +77,12 @@ public class User {
     {
         return  idMeetingVoted;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
 }

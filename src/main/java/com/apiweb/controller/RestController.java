@@ -6,6 +6,8 @@ import com.google.cloud.firestore.DocumentReference;
 import com.google.cloud.firestore.DocumentSnapshot;
 import com.google.cloud.firestore.Firestore;
 import com.google.cloud.firestore.QueryDocumentSnapshot;
+import com.google.cloud.storage.Acl;
+import com.google.firebase.auth.FirebaseAuthException;
 import com.google.firebase.cloud.FirestoreClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,6 +53,13 @@ public class RestController {
         }
     }
 
+    @PostMapping("/updateUser")
+    public String updateUser(@RequestBody Map<String, Object> json) throws ExecutionException, InterruptedException, FirebaseAuthException {
+            current_user.setName(json.get(NAME).toString());
+            current_user.setFirstname(json.get(FIRSTNAME).toString());
+            FirebaseServiceUser.save(current_user);
+            return"Updated user"+ current_user.getName()+ current_user.getFirstname();
+        }
 
     @PostMapping("/createMeetingPoll")
     public String addMeetingPoll(@RequestBody Map<String, Object> json) throws InterruptedException, ExecutionException, ParseException {
