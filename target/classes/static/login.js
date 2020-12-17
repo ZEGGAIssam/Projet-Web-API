@@ -12,6 +12,7 @@ $(document).ready(function(){
                     console.log(response)
                     if(response == 1){
                         alert("connected");
+                        window.location.href='meetingForm.html';
                     }else{
                         alert(response);
                     }
