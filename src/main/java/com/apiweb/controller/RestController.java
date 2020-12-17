@@ -23,6 +23,7 @@ public class RestController {
 
     private User current_user = null;
     private MeetingPoll current_meeting = null;
+    private HashMap<String, User> auth = new HashMap<String, User>();
 
     //user routed
     @PostMapping("/login")
