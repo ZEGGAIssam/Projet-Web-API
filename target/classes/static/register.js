@@ -23,3 +23,7 @@ $(document).ready(function(){
         }
     });
 });
+$("#registerPage").click(function(){
+  window.location.href='meetingForm.html';
+  window.location.href='register.html';
+});

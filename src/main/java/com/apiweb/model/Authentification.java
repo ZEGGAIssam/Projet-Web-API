@@ -61,6 +61,11 @@ public class Authentification {
 
     }
 
+    public static boolean isValid(String token)
+    {
+        return authArray.containsKey(token)  && authArray.get(token).isValid();
+    }
+
 
     public boolean isValid()
     {

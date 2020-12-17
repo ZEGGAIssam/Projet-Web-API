@@ -10,7 +10,7 @@ $(document).ready(function() {
             userRef.update({name: true});
             userRef.update({firstname: true});
         }
-        url:"http://localhost:8080/updateuser"{
+        url:"http://localhost:8080/updateuser",
             type: POST,
             data: JSON.stringify({name: name, firstname: this.firstname}),
             success: function (response) {
