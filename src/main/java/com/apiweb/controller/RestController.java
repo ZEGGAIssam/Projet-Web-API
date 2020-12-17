@@ -47,7 +47,7 @@ public class RestController {
 
     @PostMapping("/updateUser")
     public String updateUser(@RequestBody Map<String, Object> json) throws ExecutionException, InterruptedException, FirebaseAuthException {
-            User current_user = Authentification.getByToken(json.get(TOKEN).toString());
+            User current_user = FirebaseServiceUser.getConnected("aschneider2");
             current_user.setName(json.get(NAME).toString());
             current_user.setFirstname(json.get(FIRSTNAME).toString());
             FirebaseServiceUser.save(current_user);
