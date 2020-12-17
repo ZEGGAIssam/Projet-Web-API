@@ -1,0 +1,47 @@
+<!-- aimeschneider -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulaire</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+    const POST = "POST";
+    const GET = "GET";
+    const domaine ="http://localhost:8080/";
+    $.ajaxSetup({
+      contentType: "application/json; charset=utf-8"
+    });
+
+    $(document).ready(function(){
+        $.ajax({
+            url:"http://localhost:8080/getAllMeeting",
+            type:GET,
+            success:function(response){
+                console.log(response)
+                if(response == ''){
+                    alert("no meetings");
+                }else{
+                    jQuery.each(response, function() {
+                        var body = document.body
+                        var a = document.createElement("a");
+                        a.appendChild(document.createTextNode(this["name"]));
+                        document.body.appendChild(a);
+                        document.body.appendChild(document.createElement("p"));
+                    });
+                }
+            }
+        });
+    });
+    </script>
+</head>
+<body>
+<p>Name: <input id="nameMeeting" type="text" name="username"></p>
+<p>Location 1: <input id="location1" type="text" ></p>
+<p>Location 2: <input id="location2" type="text" ></p>
+<p>Location 3: <input id="location3" type="text" ></p>
+<p>Date 1: <input id="date1" type="date" ></p>
+<p>Date 2: <input id="date2" type="date" ></p>
+<p>Date 3: <input id="date3" type="date" ></p>
+<p><input id="meetingSend" type="submit" value= "Ajouter Rendez-vous"></p>
+</body>
+</html>

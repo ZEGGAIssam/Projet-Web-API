@@ -1,0 +1,111 @@
+<!-- aimeschneider -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>
+    const POST = "POST";
+    const GET = "GET";
+    const domaine ="http://localhost:8080/";
+    $.ajaxSetup({
+      contentType: "application/json; charset=utf-8"
+    });
+
+    $(document).ready(function(){
+        $("#loginSend").click(function(){
+            var username = $("#usernameLogin").val().trim();
+            var password = $("#passwordLogin").val().trim();
+
+            if( username != "" && password != ""){
+                $.ajax({
+                    url:"http://localhost:8080/login",
+                    type:POST,
+                    data:JSON.stringify({username:username, password:password}),
+                    success:function(response){
+                        console.log(response)
+                        if(response == 1){
+                            alert("connected");
+                            window.location.href='meetingForm.html';
+                        }else{
+                            alert(response);
+                        }
+                    }
+                });
+            }
+        });
+    });
+
+    $("#registerPage").click(function(){
+      window.location.href='meetingForm.html';
+      window.location.href='register.html';
+    });
+
+    </script>
+    <style>
+          body{
+              margin: 0;
+              padding: 0;
+          }
+          .box{
+          	  background-color:#f7cff7;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height:100vh;
+          }
+          .boxBackground{
+          	  background-color:#b3ccff;
+              padding: 25px;
+              border-radius: 40px;
+          }
+          .limit{
+              border: 2px solid black;
+          }
+          ::-webkit-input-placeholder {
+               text-align: center;
+          }
+		  .center {
+              margin:0px auto;
+              display:block;
+          }
+          input[type=text], input[type=password]{
+          	background-color:#ccddff;
+          	border-radius: 40px;
+            border-top-style: hidden;
+            border-right-style: hidden;
+            border-left-style: hidden;
+            border-bottom-style: hidden;
+		}
+        input[type=submit]{
+        	background-color:#ccddff;
+        	padding:10px;
+          	border-radius: 10px;
+            border-top-style: hidden;
+            border-right-style: hidden;
+            border-left-style: hidden;
+            border-bottom-style: hidden;
+		}
+      </style>
+</head>
+    <body>
+        <div class="box">
+            <div class="boxBackground">
+                <input id="usernameLogin" type="text" name="username" placeholder="Login"><br><br>
+                <input id="passwordLogin" type="password" name="password" placeholder="Password"><br><br>
+                <input id="loginSend" type="submit" value= "Login" class="center"><br><br><br>
+                <input id="registerPage" type="submit" value= "Or register here" class="center"><br>
+            </div>
+        </div>
+    </body>
+</html>
+
+<!--
+login ou register
+Après
+Affiche tout les votes
+Option d'ajout et modification de l'user
+Ajout d'un vote -> MeetingForm
+Clique sur un vote -> html permettant de voter (lieux X date)
+Modification d'user -> page de modification
+-->
