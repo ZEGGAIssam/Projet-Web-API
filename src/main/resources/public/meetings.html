@@ -4,45 +4,8 @@
 <head>
     <title>All mettings</title>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script>
-    const POST = "POST";
-    const GET = "GET";
-    const domaine ="http://localhost:8080/";
-    $.ajaxSetup({
-      contentType: "application/json; charset=utf-8"
-    });
-
-    $(document).ready(function(){
-        $.ajax({
-            url:"http://localhost:8080/getAllMeeting",
-            type:GET,
-            success:function(response){
-                console.log(response)
-                if(response == ''){
-                    alert("no meetings");
-                }else{
-                    response.forEach((row) => {
-                            console.log(row);
-                    });
-
-                    jQuery.each(response, function() {
-                        var body = document.body
-
-                        console.log(this["name"])
-                        console.log(this["choixDate"])
-                        console.log(this["id"])
-                        console.log(this["choixLocation"])
-
-                        var a = document.createElement("p");
-                        a.appendChild(document.createTextNode(this["name"]));
-                        document.body.appendChild(a);
-                        document.body.appendChild(document.createElement("p"));
-                    });
-                }
-            }
-        });
-    });
-    </script>
+    <script src="../static/var.js"> </script>
+    <script src="../static/meetings.js"> </script>
 
 </head>
     <body>

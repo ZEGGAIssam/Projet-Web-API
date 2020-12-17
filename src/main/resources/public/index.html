@@ -4,45 +4,9 @@
 <head>
     <title>Login</title>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script>
-    const POST = "POST";
-    const GET = "GET";
-    const domaine ="http://localhost:8080/";
-    $.ajaxSetup({
-      contentType: "application/json; charset=utf-8"
-    });
+    <script src="../static/var.js"> </script>
+    <script src="../static/login.js"> </script>
 
-    $(document).ready(function(){
-        $("#loginSend").click(function(){
-            var username = $("#usernameLogin").val().trim();
-            var password = $("#passwordLogin").val().trim();
-
-            if( username != "" && password != ""){
-                $.ajax({
-                    url:"http://localhost:8080/login",
-                    type:POST,
-                    data:JSON.stringify({username:username, password:password}),
-                    success:function(response){
-                        console.log(response)
-                        if(response == 1){
-                            alert("connected");
-                            window.location.href='meetingForm.html';
-                        }else{
-                            alert(response);
-                        }
-                    }
-                });
-            }
-        });
-    });
-
-    $(document).ready(function(){
-        $("#registerPage").click(function(){
-           window.location.href='register.html';
-        });
-    });
-
-    </script>
     <style>
           body{
               margin: 0;

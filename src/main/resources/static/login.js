@@ -21,3 +21,9 @@ $(document).ready(function(){
         }
     });
 });
+
+$(document).ready(function(){
+    $("#registerPage").click(function(){
+        window.location.href='register.html';
+    });
+});

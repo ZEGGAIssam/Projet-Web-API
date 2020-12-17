@@ -27,10 +27,12 @@
 
                     jQuery.each(response, function() {
                         var body = document.body
+
                         console.log(this["name"])
                         console.log(this["choixDate"])
                         console.log(this["id"])
                         console.log(this["choixLocation"])
+
                         var a = document.createElement("p");
                         a.appendChild(document.createTextNode(this["name"]));
                         document.body.appendChild(a);
