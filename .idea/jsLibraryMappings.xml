@@ -3,5 +3,6 @@
   <component name="JavaScriptLibraryMappings">
     <file url="file://$PROJECT_DIR$" libraries="{jquery-3.1.1}" />
     <file url="PROJECT" libraries="{@types/absolute-url, @types/accept-language-parser, @types/accessibility, @types/json-query, jquery-1.12.4}" />
+    <includedPredefinedLibrary name="Nashorn" />
   </component>
 </project>
