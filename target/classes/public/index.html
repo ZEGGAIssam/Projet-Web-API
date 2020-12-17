@@ -1,0 +1,54 @@
+<!-- aimeschneider -->
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Login</title>
+      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+      <script src="../static/var.js"> </script>
+      <script src="../static/login.js"> </script>
+      <style>
+          body{
+              margin: 0;
+              padding: 0;
+          }
+          .box{
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height:100vh;
+          }
+          .button{
+          display: flex;
+          justify-content: center;
+          }
+
+          .limit{
+            border: 2px solid black;
+          }
+      </style>
+   </head>
+   <body>
+       <div class="box">
+           <div>
+               <p>Login: <input id="usernameLogin" type="text" name="username"></p>
+               <p>Password: <input id="passwordLogin" type="password" name="password"></p>
+               <div class="button">
+                   <p><input id="loginSend" type="submit" value= "Login"></p>
+               </div>
+               <div class="button">
+                   <p><input id="registerSend" type="submit" value= "Or register here"></p>
+               </div>
+           </div>
+       </div>
+   </body>
+</html>
+
+<!--
+login ou register
+Après
+Affiche tout les votes
+Option d'ajout et modification de l'user
+Ajout d'un vote -> MeetingForm
+Clique sur un vote -> html permettant de voter (lieux X date)
+Modification d'user -> page de modification
+-->
