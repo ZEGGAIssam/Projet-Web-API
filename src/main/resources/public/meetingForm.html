@@ -13,38 +13,103 @@
     });
 
     $(document).ready(function(){
-        $.ajax({
-            url:"http://localhost:8080/getAllMeeting",
-            type:GET,
-            success:function(response){
-                console.log(response)
-                if(response == ''){
-                    alert("no meetings");
-                }else{
-                    jQuery.each(response, function() {
-                        var body = document.body
-                        console.log("body")
-                        console.log(body)
-                        var a = document.createElement("a");
-                        a.appendChild(document.createTextNode(this["name"]));
-                        document.body.appendChild(a);
-                        document.body.appendChild(document.createElement("p"));
-                    });
-                }
+        $("#meetingSend").click(function(){
+            var name = $("#nameMeeting").val().trim();
+            var location1 = $("#location1").val().trim();
+            var location2 = $("#location2").val().trim();
+            var location3 = $("#location3").val().trim();
+            var date1 = $("#date1").val().trim();
+            var date2 = $("#date2").val().trim();
+            var date3 = $("#date3").val().trim();
+
+            if( name != "" && location1 != "" && location2 != "" && location3 != "" && date1 != "" && date2 != "" && date3 != ""){
+                $.ajax({
+                    url:"http://localhost:8080/createMeetingPoll",
+                    type:POST,
+                    data:JSON.stringify({name:name, location1:location1, location2:location2, location3:location3, date1:date1, date2:date2, date3:date3}),
+                    success:function(response){
+                        console.log(response)
+                        if(response == 1){
+                            alert("meeting add");
+                        }else{
+                            alert(response);
+                        }
+                    }
+                });
             }
         });
     });
 
     </script>
+    <script src="../static/var.js"> </script>
+    <script src="../static/updateuser.js"> </script>
+    <style>
+          body{
+              margin: 0;
+              padding: 0;
+          }
+          .box{
+          	  background-color:#f7cff7;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              height:100vh;
+          }
+          .boxBackground{
+          	  background-color:#b3ccff;
+              padding: 25px;
+              border-radius: 40px;
+          }
+          .limit{
+              border: 2px solid black;
+          }
+          ::-webkit-input-placeholder {
+               text-align: center;
+          }
+		  .center {
+              margin:0px auto;
+              display:block;
+          }
+          input[type=text], input[type=password]{
+          	background-color:#ccddff;
+          	border-radius: 40px;
+            border-top-style: hidden;
+            border-right-style: hidden;
+            border-left-style: hidden;
+            border-bottom-style: hidden;
+		}
+        input[type=submit]{
+        	background-color:#ccddff;
+        	padding:10px;
+          	border-radius: 10px;
+            border-top-style: hidden;
+            border-right-style: hidden;
+            border-left-style: hidden;
+            border-bottom-style: hidden;
+		}
+		input[type=date]{
+        	background-color:#ccddff;
+        	padding:10px;
+          	border-radius: 10px;
+            border-top-style: hidden;
+            border-right-style: hidden;
+            border-left-style: hidden;
+            border-bottom-style: hidden;
+		}
+      </style>
 </head>
-<body>
-<p>Name: <input id="nameMeeting" type="text" name="username"></p>
-<p>Location 1: <input id="location1" type="text" ></p>
-<p>Location 2: <input id="location2" type="text" ></p>
-<p>Location 3: <input id="location3" type="text" ></p>
-<p>Date 1: <input id="date1" type="date" ></p>
-<p>Date 2: <input id="date2" type="date" ></p>
-<p>Date 3: <input id="date3" type="date" ></p>
-<p><input id="meetingSend" type="submit" value= "Ajouter Rendez-vous"></p>
-</body>
+    <body>
+        <div class="box">
+            <div class="boxBackground">
+                <input id="nameMeeting" type="text" name="username" placeholder="Username"><br><br>
+                <input id="location1" type="text" placeholder="Location 1"><br><br>
+                <input id="location2" type="text" placeholder="Location 2"><br><br>
+                <input id="location3" type="text" placeholder="Location 3"><br><br>
+                <input id="date1" type="date" placeholder="Date 1" class="center"><br><br>
+                <input id="date2" type="date" placeholder="Date 2" class="center"><br><br>
+                <input id="date3" type="date" placeholder="Date 3" class="center"><br><br>
+                <input id="meetingSend" type="submit" value= "Ajouter Rendez-vous" class="center">
+            </div>
+        </div>
+    </body>
 </html>

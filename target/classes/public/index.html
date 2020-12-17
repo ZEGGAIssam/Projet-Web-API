@@ -1,7 +1,6 @@
 <!-- aimeschneider -->
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
 <head>
     <title>Login</title>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -37,36 +36,25 @@
         });
     });
 
-    $("#registerPage").click(function(){
-      window.location.href='meetingForm.html';
-      window.location.href='register.html';
+    $(document).ready(function(){
+        $("#registerPage").click(function(){
+           window.location.href='register.html';
+        });
     });
 
     </script>
     <style>
-=======
-   <head>
-      <title>Login</title>
-      <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-      <script src="../static/var.js"> </script>
-      <script src="../static/login.js"> </script>
-      <style>
->>>>>>> origin/master
           body{
               margin: 0;
               padding: 0;
           }
           .box{
-<<<<<<< HEAD
           	  background-color:#f7cff7;
-=======
->>>>>>> origin/master
               display: flex;
               justify-content: center;
               align-items: center;
               height:100vh;
           }
-<<<<<<< HEAD
           .boxBackground{
           	  background-color:#b3ccff;
               padding: 25px;
@@ -111,32 +99,6 @@
             </div>
         </div>
     </body>
-=======
-          .button{
-          display: flex;
-          justify-content: center;
-          }
-
-          .limit{
-            border: 2px solid black;
-          }
-      </style>
-   </head>
-   <body>
-       <div class="box">
-           <div>
-               <p>Login: <input id="usernameLogin" type="text" name="username"></p>
-               <p>Password: <input id="passwordLogin" type="password" name="password"></p>
-               <div class="button">
-                   <p><input id="loginSend" type="submit" value= "Login"></p>
-               </div>
-               <div class="button">
-                   <p><input id="registerSend" type="submit" value= "Or register here"></p>
-               </div>
-           </div>
-       </div>
-   </body>
->>>>>>> origin/master
 </html>
 
 <!--
