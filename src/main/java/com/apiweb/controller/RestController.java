@@ -57,7 +57,7 @@ public class RestController {
             current_user.setName(json.get(NAME).toString());
             current_user.setFirstname(json.get(FIRSTNAME).toString());
             FirebaseServiceUser.save(current_user);
-            return "Updated user" + current_user.getName() + current_user.getFirstname();
+            return "1";
         }
         else
         {
