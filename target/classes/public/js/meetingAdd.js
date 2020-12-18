@@ -14,7 +14,6 @@ $(document).ready(function(){
                 type:POST,
                 data:JSON.stringify({name:name, location1:location1, location2:location2, location3:location3, date1:date1, date2:date2, date3:date3}),
                 success:function(response){
-                    console.log(response)
                     if(response == 1){
                         alert("meeting add");
                     }else{

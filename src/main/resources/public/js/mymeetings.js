@@ -3,17 +3,12 @@ $(document).ready(function(){
         url:"http://localhost:8080/getMyMeeting",
         type:GET,
         success:function(response){
-            console.log(response)
             if(response == 0)
             {
-                alert("token problem");
+                alert("invalid token");
             }
             else
             {
-                response.forEach((row) => {
-                        console.log(row);
-                });
-
                 jQuery.each(response, function() {
                     var divMeeting = document.createElement("div");
                     divMeeting.classList.add("meetingDiv");
@@ -77,11 +72,10 @@ $(document).ready(function(){
                             type:POST,
                             data:JSON.stringify({id:id}),
                             success:function(response){
-                                console.log(response)
                                 if(response == 1){
                                     return window.location.href="http://localhost:8080/mymeetings.html";
                                 }else{
-                                    alert("can't delete");
+                                    alert(response);
                                 }
                             }
                         });

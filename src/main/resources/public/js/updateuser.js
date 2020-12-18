@@ -1,9 +1,7 @@
 $(document).ready(function() {
         const params= new URLSearchParams(window.location.search)
         const updateSuccessParam=params.get("update_success")
-        console.log(updateSuccessParam)
         if (updateSuccessParam) {
-            console.log(window.Toastify)
             window.Toastify({
                 text: "User has been updated successfully !"
             }).showToast()

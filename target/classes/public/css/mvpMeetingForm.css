@@ -421,3 +421,9 @@ blockquote footer {
     line-height: var(--line-height);
     padding: 1.5rem 0;
 }
+
+.buttonSubmit {
+  margin:0px auto;
+  display:block;
+  cursor:pointer;
+}

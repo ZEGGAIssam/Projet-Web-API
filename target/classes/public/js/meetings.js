@@ -5,7 +5,7 @@ $(document).ready(function(){
         type:GET,
         success:function(response){
             if(response == 0) {
-                alert("token problem");
+                alert("invalid token");
             }
             else
             {
