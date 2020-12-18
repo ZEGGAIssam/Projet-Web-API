@@ -27,38 +27,44 @@ $(document).ready(function(){
                     divLocation.appendChild(document.createTextNode("Location :"));
                     var br =  document.createElement("br");
                     divLocation.appendChild(br);
+                    var ttVoteLoc = 0;
+                    jQuery.each(this["choixLocation"], function(key, value) {
+                        ttVoteLoc = ttVoteLoc + value;
+                    });
                     jQuery.each(this["choixLocation"], function(key, value) {
                         var divInputLoc = document.createElement("div");
-                        var inputLoc = document.createElement("input");
-                        inputLoc.type = "radio";
-                        inputLoc.id = key
-                        inputLoc.value = key
-                        inputLoc.name = "choixLocation";
                         var labelLoc = document.createElement("label");
-                        labelLoc.appendChild(document.createTextNode(key));
-                        divInputLoc.appendChild(inputLoc);
+                        labelLoc.classList.add("resLabel");
+                        if (ttVoteLoc == 0)
+                        {
+                            ttVoteLoc = 1;
+                        }
+                        labelLoc.appendChild(document.createTextNode(key + " : " + Math.trunc(value/ttVoteLoc*100) + "%"));
                         divInputLoc.appendChild(labelLoc);
                         divLocation.appendChild(divInputLoc);
                     });
                     divMeeting.appendChild(divLocation);
-
                     var divDate = document.createElement("div");
                     divDate.classList.add("meetingDate");
                     divDate.appendChild(document.createTextNode("Date :"));
                     divDate.appendChild(br);
+                    var ttVoteDate = 0;
+                    jQuery.each(this["choixLocation"], function(key, value) {
+                       ttVoteDate = ttVoteDate + value;
+                    });
+
                     jQuery.each(this["choixDate"], function(key, value) {
                         var divInputDate = document.createElement("div");
-                        var inputDate = document.createElement("input");
-                        inputDate.type = "radio";
-                        inputDate.id = key;
-                        inputDate.value = key;
-                        inputDate.name = "choixDate";
                         var labelDate = document.createElement("label");
-                        labelDate.appendChild(document.createTextNode(key));
-                        divInputDate.appendChild(inputDate);
+                        labelDate.classList.add("resLabel");
+                        if (ttVoteDate == 0)
+                        {
+                            ttVoteDate = 1;
+                        }
+                        labelDate.appendChild(document.createTextNode(key + " : " + Math.trunc(value/ttVoteDate*100) + "%"));
                         divInputDate.appendChild(labelDate);
                         divDate.appendChild(divInputDate);
-                    });
+                   });
                     divMeeting.appendChild(divDate);
                     var deletebtn = document.createElement("input");
                     deletebtn.type="submit";
