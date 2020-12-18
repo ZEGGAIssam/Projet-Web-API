@@ -33,6 +33,7 @@ $(document).ready(function(){
                         inputLoc.type = "radio";
                         inputLoc.id = key
                         inputLoc.value = key
+                        inputLoc.name = "choixLocation";
                         var labelLoc = document.createElement("label");
                         labelLoc.appendChild(document.createTextNode(key));
                         divInputLoc.appendChild(inputLoc);
@@ -51,6 +52,7 @@ $(document).ready(function(){
                         inputDate.type = "radio";
                         inputDate.id = key;
                         inputDate.value = key;
+                        inputDate.name = "choixDate";
                         var labelDate = document.createElement("label");
                         labelDate.appendChild(document.createTextNode(key));
                         divInputDate.appendChild(inputDate);
@@ -60,7 +62,7 @@ $(document).ready(function(){
                     divMeeting.appendChild(divDate);
                     var vote = document.createElement("input");
                     vote.type = "submit";
-                    vote.name = "Vote;"
+                    vote.value = "Vote"
                     vote.classList.add("buttonSubmit");
                     divMeeting.appendChild(vote);
                     document.body.appendChild(divMeeting);
