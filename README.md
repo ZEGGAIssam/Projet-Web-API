@@ -13,18 +13,16 @@ de l'ensemble du projet [ici](https://github.com/ZEGGAIssam/Projet-Web-API/tree/
 
 Qu'allez-vous trouver dans notre section [Documentation](https://github.com/ZEGGAIssam/Projet-Web-API/tree/master/Documentation) ?
 
-1. La documentation sur : *[L'Organisation du Projet](https://github.com/gcaugant56/Genie-Logiciel/tree/develop/doc/Documentation/Organisation%20du%20projet)*
+1. La documentation sur : *[L'Organisation du Projet](https://github.com/ZEGGAIssam/Projet-Web-API/blob/master/Documentation/Organisation%20du%20Projet.md)*
+  - Le Cahier des charges du projet.
   - La méthode de développement de projet choisie avec un argumentaire et les pratiques appliquées.
   - La vision Gestion de Projet avec descriptif de la répartition des tâches et état d'avancement en fonction du temps.
 
-
-2. La documentation sur *[Les Spécifications](https://github.com/ZEGGAIssam/Projet-Web-API/blob/master/Documentation/Les%20Sp%C3%A9cifications.md)* comportant :
-
-- [Le Cahier des charges](https://github.com/ZEGGAIssam/Projet-Web-API/blob/master/Documentation/Cahier%20des%20charges.md)
-- Diagrammes UML : package, composants, déploiement, classes
+2. La documentation sur *[La Conception](https://github.com/ZEGGAIssam/Projet-Web-API/blob/master/Documentation/Conception.md)* comportant :
+  
+  - Diagrammes UML : package, composants, déploiement, classes
 
 
-3. La documentation sur *[La Conception](https://github.com/ZEGGAIssam/Projet-Web-API/blob/master/Documentation/Conception.md)* comportant :
+3. La documentation sur *[Les Spécifications](https://github.com/ZEGGAIssam/Projet-Web-API/blob/master/Documentation/Les%20Sp%C3%A9cifications.md)* comportant :
 
   - La décomposition en modules du site web
-  - Les spécifications des interfaces
