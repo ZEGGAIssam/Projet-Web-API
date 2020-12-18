@@ -18,7 +18,7 @@ Qu'allez-vous trouver dans notre section [Documentation](https://github.com/ZEGG
   - La vision Gestion de Projet avec descriptif de la répartition des tâches et état d'avancement en fonction du temps.
 
 
-2. La documentation sur *[Les Spécifications](https://github.com/ZEGGAIssam/Projet-Web-API/blob/master/Documentation/Les%20Sp%C3%A9cifications.md)* comportant :
+2. La documentation sur Les Spécifications comportant :
 
 - [Le Cahier des charges](https://github.com/ZEGGAIssam/Projet-Web-API/blob/master/Documentation/Cahier%20des%20charges.md)
 - Diagrammes UML : package, composants, déploiement, classes
