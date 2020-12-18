@@ -2,8 +2,8 @@
 Membres du groupe : **Mathieu DZIEDZIC, Aimé SCHNEIDER, Issam ZEGGAÏ**
 
 # Tableaux des spécifications :
+<a href="https://postimg.cc/GTYGzhTK" target="_blank"><img src="https://i.postimg.cc/GTYGzhTK/nvih7Zz.jpg" alt="nvih7Zz"/></a><br/><br/>
 
-![Screen](https://i.imgur.com/TXaAUTN)
 
 # Features supplémentaires :
 
@@ -26,4 +26,4 @@ Suite à quoi nous avons trier les différentes exigences de ce dernier afin de 
 
 # Backlog User Stories & Constraint Stories :
 
-![Screen](https://i.imgur.com/a65JAXS)
+<a href="https://postimg.cc/k62x6ynk" target="_blank"><img src="https://i.postimg.cc/k62x6ynk/a65JAXS.png" alt="a65JAXS"/></a><br/><br/>
