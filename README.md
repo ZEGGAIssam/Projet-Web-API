@@ -1,6 +1,6 @@
 # Projet de Programmation Web orientée Mobile - Groupe n°8
 
-Membres du groupe : **Mathieu Dziedzic, Aimé Schneider, Issam Zeggaï**
+Membres du groupe : **Mathieu DZIEDZIC, Aimé SCHNEIDER, Issam ZEGGAÏ**
 
 # Introduction au projet : Programmation WEB orientée Mobile
 
