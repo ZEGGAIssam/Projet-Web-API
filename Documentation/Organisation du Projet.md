@@ -16,7 +16,10 @@ Le projet inclus un :
 
 # Choix de la Database 
 
-Pourquoi avoir choisi Firebase pour ce projet ?
+Pourquoi avoir choisi **FIREBASE** pour ce projet ?
+
+![Screen](https://i.imgur.com/7KDn4vx.png)
+
 
 Tout d'abord car l'un des membres du groupe était plutôt à l'aise avec cette technologie @ZEGGAIssam, mais qu'également, la documentation de Firebase est relativement complète et propose un panel de solutions et d'intégrations pour les différentes utilisations que nous souhaitons en faire.
 D'une base de donnée basique (version Free), à une version beaucoup plus élaborée, La BDD Firebase propose des solutions "tout-en-un" facilitant leurs développeurs à s'occuper le moins possible de leur back-end via une automatisation de ce dernier (Authentification, stockage de la data, cloudification de la data etc..)
