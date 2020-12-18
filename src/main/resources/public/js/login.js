@@ -1,7 +1,9 @@
 $(document).ready(function(){
     const params= new URLSearchParams(window.location.search)
     const registerSuccessParam=params.get("register_success")
+    console.log(registerSuccessParam)
     if (registerSuccessParam) {
+        console.log(window.Toastify)
         window.Toastify({
             text: "User has been created successfully !"
         }).showToast()

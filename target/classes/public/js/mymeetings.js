@@ -3,12 +3,18 @@ $(document).ready(function(){
         url:"http://localhost:8080/getMyMeeting",
         type:GET,
         success:function(response){
+            console.log(response)
             if(response == 0)
             {
                 alert("invalid token");
             }
             else
             {
+                response.forEach((row) => {
+                        console.log(row);
+                });
+                var divBox = document.createElement("div");
+                divBox.classList.add("box");
                 jQuery.each(response, function() {
                     var divMeeting = document.createElement("div");
                     divMeeting.classList.add("meetingDiv");
@@ -72,6 +78,7 @@ $(document).ready(function(){
                             type:POST,
                             data:JSON.stringify({id:id}),
                             success:function(response){
+                                console.log(response)
                                 if(response == 1){
                                     return window.location.href="http://localhost:8080/mymeetings.html";
                                 }else{
@@ -81,8 +88,10 @@ $(document).ready(function(){
                         });
                     };
                     divMeeting.appendChild(deletebtn);
-                    document.body.appendChild(divMeeting);
+                    divBox.appendChild(divMeeting);
+
                 });
+                document.body.appendChild(divBox);
             }
         }
     })
