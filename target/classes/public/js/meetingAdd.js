@@ -16,7 +16,8 @@ $(document).ready(function(){
                 success:function(response){
                     console.log(response)
                     if(response == 1){
-                        alert("meeting add");
+                        alert("meeting added");
+                        window.location.href='meetings.html';
                     }else{
                         alert(response);
                     }
@@ -25,3 +26,4 @@ $(document).ready(function(){
         }
     });
 });
+

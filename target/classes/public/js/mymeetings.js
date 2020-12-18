@@ -13,7 +13,8 @@ $(document).ready(function(){
                 response.forEach((row) => {
                         console.log(row);
                 });
-
+                var divBox = document.createElement("div");
+                divBox.classList.add("box");
                 jQuery.each(response, function() {
                     var divMeeting = document.createElement("div");
                     divMeeting.classList.add("meetingDiv");
@@ -78,7 +79,8 @@ $(document).ready(function(){
                             data:JSON.stringify({id:id}),
                             success:function(response){
                                 console.log(response)
-                                if(response == 1){
+                                if(response == 1){*
+                                    alert("meeting successfully deleted");
                                     return window.location.href="http://localhost:8080/mymeetings.html";
                                 }else{
                                     alert("can't delete");
@@ -87,8 +89,10 @@ $(document).ready(function(){
                         });
                     };
                     divMeeting.appendChild(deletebtn);
-                    document.body.appendChild(divMeeting);
+                    divBox.appendChild(divMeeting);
+
                 });
+                document.body.appendChild(divBox);
             }
         }
     })

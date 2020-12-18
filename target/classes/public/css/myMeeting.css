@@ -1,0 +1,59 @@
+.box{
+    margin-left:250px;
+}
+
+.meetingDiv{
+    display: inline-block;
+    background-color:grey;
+    padding : 5px 15px 5px 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+    min-width:400px;
+    min-height: 200px;
+
+}
+
+.meetingLocation{
+    display: : inline-block;
+    margin: 15px 0px;
+}
+.meetingLocation div{
+    display: inline-block;
+}
+
+.meetingDate div{
+    display: inline-block;
+}
+.buttonSubmit {
+    margin:0px auto;
+    display:block;
+    cursor:pointer;
+}
+.leftbox {
+    float:left;
+    background-color:#7d7d7d;
+    margin-top: 20px;
+    width:20%;
+    height:280px;
+}
+.middlebox{
+    float:left;
+    background-color:#7d7d7d;
+    margin-top: 20px;
+    width:20%;
+    height:280px;
+}
+.rightbox{
+    float:left;
+    background-color:#7d7d7d;
+    margin-top: 20px;
+    width:20%;
+    height:280px;
+}
+.meetingName{
+    text-align:center;
+    font-size:1.4em;
+}
+
+.resLabel{
+ margin: 5px;}
