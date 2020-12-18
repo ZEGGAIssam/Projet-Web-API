@@ -29,7 +29,7 @@ public class RestController {
             response.setHeader("Set-Cookie", TOKEN + "=" + Authentification.generateToken(current_user) + ";HttpOnly; SameSite=strict");
             return "1";
         } else {
-            return "0";
+            return "login or password invalid";
         }
     }
 
@@ -42,6 +42,12 @@ public class RestController {
         } else {
             return "0";
         }
+    }
+
+    @PostMapping("/logout")
+    public String logout( @CookieValue(TOKEN) String token) throws ExecutionException, InterruptedException, FirebaseAuthException {
+        Authentification.authArray.remove(token);
+        return "1";
     }
 
     @PostMapping("/updateUser")
@@ -92,21 +98,40 @@ public class RestController {
     @PostMapping("/saveVote")
     public String addVoteLocation(@RequestBody Map<String, Object> json, @CookieValue(TOKEN) String token) throws InterruptedException, ExecutionException, ParseException {
         User current_user = Authentification.getByToken(token);
-        if (current_user != null) {
+        String voteLocation = json.get("voteLocation").toString();
+        String voteDate = json.get("voteDate").toString();
+        if (current_user != null && voteLocation != "" && voteDate != "") {
             MeetingPoll current_meeting = FirebaseServiceMeetingPoll.get(json.get(ID).toString());
-            current_meeting.addVote(json.get("voteLocation").toString(), json.get("voteDate").toString(), current_user);
+            current_meeting.addVote(voteLocation, voteDate, current_user);
             FirebaseServiceMeetingPoll.saveMeeting(current_meeting);
             FirebaseServiceUser.save(current_user);
             return "1";
-        } else {
+        }
+        else if (current_user == null) {
+            return "invalid token";
+        }
+        else if (voteLocation == "" || voteDate == "")
+        {
+            return "vote item invalid";
+        }
+        else
+        {
             return "0";
         }
     }
 
     @GetMapping("/getAllMeeting")
     public Object getAllMeeting(@CookieValue(TOKEN) String token) throws InterruptedException, ExecutionException {
-        if (Authentification.isValid(token)) {
-            return FirebaseServiceMeetingPoll.getAll();
+        User current_user = Authentification.getByToken(token);
+        if (current_user != null) {
+            ArrayList<Object> meetings = FirebaseServiceMeetingPoll.getAll();
+            for (Object o: meetings) {
+                if (current_user.getIdMeetingVoted().contains(((HashMap)o).get("id")))
+                {
+                    meetings.remove(o);
+                }
+            }
+            return meetings;
         } else {
             return "0";
         }
@@ -122,7 +147,7 @@ public class RestController {
         }
         else
         {
-            return "0";
+            return "invalid token";
         }
     }
 

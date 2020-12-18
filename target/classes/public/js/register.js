@@ -11,8 +11,6 @@
                     type:POST,
                     data:JSON.stringify({name:name,firstname:firstname, username:username, password:password}),
                     success:function(response){
-                        var msg = "";
-                        console.log(response)
                         if(response == 1){
                             return window.location.href="http://localhost:8080/index.html?register_success=true";
                         }else{

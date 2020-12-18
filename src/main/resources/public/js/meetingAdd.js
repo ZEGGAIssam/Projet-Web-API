@@ -7,14 +7,18 @@ $(document).ready(function(){
         var date1 = $("#date1").val().trim();
         var date2 = $("#date2").val().trim();
         var date3 = $("#date3").val().trim();
-
-        if( name != "" && location1 != "" && location2 != "" && location3 != "" && date1 != "" && date2 != "" && date3 != ""){
+        var locDiff = ((location1 != location2) && (location1 != location3) && (location3 != location2));
+        var dateDiff = ((date1 != date2) && (date1 != date3) && (date3 != date2));
+        if(!locDiff ||!dateDiff)
+        {
+            alert("same values")
+        }
+        else if( locDiff && dateDiff && name != "" && location1 != "" && location2 != "" && location3 != "" && date1 != "" && date2 != "" && date3 != ""){
             $.ajax({
                 url:"http://localhost:8080/createMeetingPoll",
                 type:POST,
                 data:JSON.stringify({name:name, location1:location1, location2:location2, location3:location3, date1:date1, date2:date2, date3:date3}),
                 success:function(response){
-                    console.log(response)
                     if(response == 1){
                         alert("meeting added");
                         window.location.href='meetings.html';

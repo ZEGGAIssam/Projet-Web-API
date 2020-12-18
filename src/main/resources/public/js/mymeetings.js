@@ -6,7 +6,7 @@ $(document).ready(function(){
             console.log(response)
             if(response == 0)
             {
-                alert("token problem");
+                alert("invalid token");
             }
             else
             {
@@ -79,11 +79,10 @@ $(document).ready(function(){
                             data:JSON.stringify({id:id}),
                             success:function(response){
                                 console.log(response)
-                                if(response == 1){*
-                                    alert("meeting successfully deleted");
+                                if(response == 1){
                                     return window.location.href="http://localhost:8080/mymeetings.html";
                                 }else{
-                                    alert("can't delete");
+                                    alert(response);
                                 }
                             }
                         });
