@@ -125,15 +125,19 @@ public class RestController {
         User current_user = Authentification.getByToken(token);
         if (current_user != null) {
             ArrayList<Object> meetings = FirebaseServiceMeetingPoll.getAll();
+            ArrayList<Object> toRemove = new ArrayList<>();
             for (Object o: meetings) {
                 if (current_user.getIdMeetingVoted().contains(((HashMap)o).get("id")))
                 {
-                    meetings.remove(o);
+                    toRemove.add(o);
                 }
+            }
+            for (Object o :toRemove) {
+                meetings.remove(o);
             }
             return meetings;
         } else {
-            return "0";
+            return "invalid token";
         }
     }
     @PostMapping("/deleteAMeeting")
@@ -162,7 +166,7 @@ public class RestController {
             }
             return myMeetings;
         } else {
-            return "0";
+            return "invalid token";
         }
     }
 }

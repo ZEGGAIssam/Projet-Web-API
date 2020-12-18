@@ -3,10 +3,9 @@ $(document).ready(function(){
         url:"http://localhost:8080/getMyMeeting",
         type:GET,
         success:function(response){
-            console.log(response)
-            if(response == 0)
+            if(response == "invalid token")
             {
-                alert("invalid token");
+                alert(response);
             }
             else
             {

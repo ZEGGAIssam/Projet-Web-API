@@ -4,8 +4,9 @@ $(document).ready(function(){
         url:"http://localhost:8080/getAllMeeting",
         type:GET,
         success:function(response){
-            if(response == 0) {
-                alert("invalid token");
+            console.log(response)
+            if(response === "invalid token") {
+                alert(response);
             }
             else
             {
