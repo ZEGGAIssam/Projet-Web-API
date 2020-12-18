@@ -1,22 +1,19 @@
 $(document).ready(function(){
+
     $.ajax({
         url:"http://localhost:8080/getAllMeeting",
         type:GET,
         success:function(response){
-            console.log(response)
-            if(response == 0)
-            {
+            if(response == 0) {
                 alert("token problem");
             }
             else
             {
-                response.forEach((row) => {
-                        console.log(row);
-                });
-
                 var i=0;
                 var position=["leftbox", "middlebox", "rightbox"];
                 jQuery.each(response, function() {
+                    var rdLoc = [];
+                    var rdDate = [];
                     var divMeeting = document.createElement("div");
                     divMeeting.classList.add("meetingDiv");
                     divMeeting.classList.add("mainDiv");
@@ -37,6 +34,7 @@ $(document).ready(function(){
                         inputLoc.id = key
                         inputLoc.value = key
                         inputLoc.name = "choixLocation";
+                        rdLoc.push(inputLoc);
                         var labelLoc = document.createElement("label");
                         labelLoc.appendChild(document.createTextNode(key));
                         divInputLoc.appendChild(inputLoc);
@@ -44,7 +42,6 @@ $(document).ready(function(){
                         divLocation.appendChild(divInputLoc);
                     });
                     divMeeting.appendChild(divLocation);
-
                     var divDate = document.createElement("div");
                     divDate.classList.add("meetingDate");
                     divDate.appendChild(document.createTextNode("Date :"));
@@ -56,17 +53,47 @@ $(document).ready(function(){
                         inputDate.id = key;
                         inputDate.value = key;
                         inputDate.name = "choixDate";
+                        rdDate.push(inputDate);
                         var labelDate = document.createElement("label");
                         labelDate.appendChild(document.createTextNode(key));
                         divInputDate.appendChild(inputDate);
                         divInputDate.appendChild(labelDate);
                         divDate.appendChild(divInputDate);
-                    });
+                        });
                     divMeeting.appendChild(divDate);
                     var vote = document.createElement("input");
                     vote.type = "submit";
                     vote.value = "Vote"
                     vote.classList.add("buttonSubmit");
+                    var id = this["id"];
+                    vote.onclick = function(){
+                        var voteLocation = "";
+                        var voteDate = "";
+                        rdLoc.forEach(function(item){
+                            if(item.checked){
+                                voteLocation = item.id;
+                            }
+                        });
+                        rdDate.forEach(function(item){
+                            if(item.checked){
+                                voteDate = item.id;
+                            }
+                        });
+                        $.ajax({
+                            url:"http://localhost:8080/saveVote",
+                            type:POST,
+                            data:JSON.stringify({id:id, voteLocation:voteLocation, voteDate:voteDate}),
+                            success:function(response){
+                                if(response == 1){
+                                    window.location.href='meetings.html';
+                                }
+                                else{
+                                    alert(response);
+                                }
+                            }
+                        });
+
+                    }
                     divMeeting.appendChild(vote);
                     document.body.appendChild(divMeeting);
 
@@ -74,5 +101,5 @@ $(document).ready(function(){
                 });
             }
         }
-    })
+    });
 });

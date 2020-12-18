@@ -20,9 +20,6 @@ import static com.apiweb.var.*;
 @org.springframework.web.bind.annotation.RestController
 public class RestController {
 
-    private MeetingPoll current_meeting = null;
-
-
     //user routed
     @PostMapping("/login")
     public String getCurrentUser(@RequestBody Map<String, Object> json, HttpServletResponse response) throws InterruptedException, ExecutionException {
@@ -88,7 +85,7 @@ public class RestController {
 
     @GetMapping("/getMeeting")
     public String getMeeting(@RequestBody Map<String, Object> json) throws InterruptedException, ExecutionException {
-        current_meeting = FirebaseServiceMeetingPoll.get(json.get(ID).toString());
+        MeetingPoll current_meeting = FirebaseServiceMeetingPoll.get(json.get(ID).toString());
         return current_meeting.getName();
     }
 
@@ -96,6 +93,7 @@ public class RestController {
     public String addVoteLocation(@RequestBody Map<String, Object> json, @CookieValue(TOKEN) String token) throws InterruptedException, ExecutionException, ParseException {
         User current_user = Authentification.getByToken(token);
         if (current_user != null) {
+            MeetingPoll current_meeting = FirebaseServiceMeetingPoll.get(json.get(ID).toString());
             current_meeting.addVote(json.get("voteLocation").toString(), json.get("voteDate").toString(), current_user);
             FirebaseServiceMeetingPoll.saveMeeting(current_meeting);
             FirebaseServiceUser.save(current_user);

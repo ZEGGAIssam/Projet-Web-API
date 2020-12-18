@@ -60,12 +60,12 @@ $(document).ready(function(){
                         divDate.appendChild(divInputDate);
                     });
                     divMeeting.appendChild(divDate);
-                    var vote = document.createElement("input");
-                    vote.type="submit";
-                    vote.value = "Delete";
-                    vote.classList.add("buttonSubmit");
+                    var deletebtn = document.createElement("input");
+                    deletebtn.type="submit";
+                    deletebtn.value = "Delete";
+                    deletebtn.classList.add("buttonSubmit");
                     var id = this["id"];
-                    vote.onclick = function(){
+                    deletebtn.onclick = function(){
                         $.ajax({
                             url:"http://localhost:8080/deleteAMeeting",
                             type:POST,
@@ -80,7 +80,7 @@ $(document).ready(function(){
                             }
                         });
                     };
-                    divMeeting.appendChild(vote);
+                    divMeeting.appendChild(deletebtn);
                     document.body.appendChild(divMeeting);
                 });
             }
