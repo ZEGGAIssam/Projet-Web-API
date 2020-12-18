@@ -56,6 +56,6 @@ public class MeetingPoll {
         choixDate.put(keyDate, nbDateVote+1 );
         Long nbLocVote = choixLocation.get(keyLoc);
         choixLocation.put(keyLoc,  nbLocVote+1 );
-        user.addId(this.id);
+        user.addIdVoted(this.id);
     }
 }
