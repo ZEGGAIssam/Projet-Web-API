@@ -1,6 +1,6 @@
 $(document).ready(function(){
     $.ajax({
-        url:"http://localhost:8080/getAllMeeting",
+        url:"http://localhost:8080/getMyMeeting",
         type:GET,
         success:function(response){
             console.log(response)
@@ -27,14 +27,15 @@ $(document).ready(function(){
                     divLocation.appendChild(document.createTextNode("Location :"));
                     var br =  document.createElement("br");
                     divLocation.appendChild(br);
-                    jQuery.each(this["choixLocation"], function() {
+                    jQuery.each(this["choixLocation"], function(key, value) {
                         var divInputLoc = document.createElement("div");
                         var inputLoc = document.createElement("input");
                         inputLoc.type = "radio";
-                        inputLoc.id = this
-                        inputLoc.value = this
+                        inputLoc.id = key
+                        inputLoc.value = key
+                        inputLoc.name = "choixLocation";
                         var labelLoc = document.createElement("label");
-                        labelLoc.appendChild(document.createTextNode(this));
+                        labelLoc.appendChild(document.createTextNode(key));
                         divInputLoc.appendChild(inputLoc);
                         divInputLoc.appendChild(labelLoc);
                         divLocation.appendChild(divInputLoc);
@@ -44,26 +45,46 @@ $(document).ready(function(){
                     var divDate = document.createElement("div");
                     divDate.classList.add("meetingDate");
                     divDate.appendChild(document.createTextNode("Date :"));
-                    var divInputDate = document.createElement("div");
-                    var inputDate = document.createElement("input");
-                    inputDate.type = "radio";
-                    inputDate.id = this["name"]
-                    inputDate.value = this["name"]
-                    var labelDate = document.createElement("label");
-                    labelDate.appendChild(document.createTextNode(this["name"]));
-                    divInputDate.appendChild(inputDate);
-                    divInputDate.appendChild(labelDate);
                     divDate.appendChild(br);
-                    divDate.appendChild(divInputDate);
+                    jQuery.each(this["choixDate"], function(key, value) {
+                        var divInputDate = document.createElement("div");
+                        var inputDate = document.createElement("input");
+                        inputDate.type = "radio";
+                        inputDate.id = key;
+                        inputDate.value = key;
+                        inputDate.name = "choixDate";
+                        var labelDate = document.createElement("label");
+                        labelDate.appendChild(document.createTextNode(key));
+                        divInputDate.appendChild(inputDate);
+                        divInputDate.appendChild(labelDate);
+                        divDate.appendChild(divInputDate);
+                    });
                     divMeeting.appendChild(divDate);
                     var vote = document.createElement("input");
-                    vote.type = "submit";
-                    vote.name = "Vote;"
+                    vote.type="submit";
+                    vote.value = "Delete";
                     vote.classList.add("buttonSubmit");
+                    var id = this["id"];
+                    vote.onclick = function(){
+                        $.ajax({
+                            url:"http://localhost:8080/deleteAMeeting",
+                            type:POST,
+                            data:JSON.stringify({id:id}),
+                            success:function(response){
+                                console.log(response)
+                                if(response == 1){
+                                    return window.location.href="http://localhost:8080/mymeetings.html";
+                                }else{
+                                    alert("can't delete");
+                                }
+                            }
+                        });
+                    };
                     divMeeting.appendChild(vote);
                     document.body.appendChild(divMeeting);
                 });
             }
         }
     })
+
 });

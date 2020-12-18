@@ -50,10 +50,16 @@ public class RestController {
     @PostMapping("/updateUser")
     public String updateUser(@RequestBody Map<String, Object> json, @CookieValue(TOKEN) String token) throws ExecutionException, InterruptedException, FirebaseAuthException {
         User current_user = Authentification.getByToken(token);
-        current_user.setName(json.get(NAME).toString());
-        current_user.setFirstname(json.get(FIRSTNAME).toString());
-        FirebaseServiceUser.save(current_user);
-        return "Updated user" + current_user.getName() + current_user.getFirstname();
+        if  (current_user != null) {
+            current_user.setName(json.get(NAME).toString());
+            current_user.setFirstname(json.get(FIRSTNAME).toString());
+            FirebaseServiceUser.save(current_user);
+            return "Updated user" + current_user.getName() + current_user.getFirstname();
+        }
+        else
+        {
+            return "0";
+        }
     }
 
     @PostMapping("/createMeetingPoll")
@@ -68,11 +74,12 @@ public class RestController {
             choixLoc.put(json.get("location2").toString(), 0);
             choixLoc.put(json.get("location3").toString(), 0);
             MeetingPoll meetingPoll = new MeetingPoll(json.get(NAME).toString(), choixDate, choixLoc);
+            User current_user = Authentification.getByToken(token);
+            current_user.addIdCreated(meetingPoll.getId());
             FirebaseServiceMeetingPoll.add(meetingPoll);
+            FirebaseServiceUser.save(current_user);
             return "1";
-        }
-        else
-        {
+        } else {
             return "0";
         }
 
@@ -87,16 +94,14 @@ public class RestController {
 
     @PostMapping("/saveVote")
     public String addVoteLocation(@RequestBody Map<String, Object> json, @CookieValue(TOKEN) String token) throws InterruptedException, ExecutionException, ParseException {
-        User current_user = Authentification.getByToken(json.get(TOKEN).toString());
+        User current_user = Authentification.getByToken(token);
         if (current_user != null) {
             current_meeting.addVote(json.get("voteLocation").toString(), json.get("voteDate").toString(), current_user);
             FirebaseServiceMeetingPoll.saveMeeting(current_meeting);
             FirebaseServiceUser.save(current_user);
             return "1";
-        }
-        else
-        {
-            return  "0";
+        } else {
+            return "0";
         }
     }
 
@@ -104,6 +109,35 @@ public class RestController {
     public Object getAllMeeting(@CookieValue(TOKEN) String token) throws InterruptedException, ExecutionException {
         if (Authentification.isValid(token)) {
             return FirebaseServiceMeetingPoll.getAll();
+        } else {
+            return "0";
+        }
+    }
+    @PostMapping("/deleteAMeeting")
+    public Object deleteAMeeting(@RequestBody Map<String, Object> json, @CookieValue(TOKEN) String token) throws InterruptedException, ExecutionException {
+        User current_user = Authentification.getByToken(token);
+        if (current_user != null) {
+            FirebaseServiceMeetingPoll.deleteMeeting(json.get(ID).toString());
+            current_user.removeIdCreated(json.get(ID).toString());
+            FirebaseServiceUser.save(current_user);
+            return "1";
+        }
+        else
+        {
+            return "0";
+        }
+    }
+
+
+    @GetMapping("/getMyMeeting")
+    public Object getMyMeeting(@CookieValue(TOKEN) String token) throws InterruptedException, ExecutionException {
+        User current_user = Authentification.getByToken(token);
+        if (current_user != null) {
+            ArrayList<Object> myMeetings = new ArrayList<>();
+            for (String id: current_user.getIdMeetingCreated()) {
+                    myMeetings.add(FirebaseServiceMeetingPoll.get(id));
+            }
+            return myMeetings;
         } else {
             return "0";
         }

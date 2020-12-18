@@ -10,6 +10,8 @@ public class var
     public static final String PWD = "password";
     public static final String FIRSTNAME = "firstname";
     public static final String NAME = "name";
+    public static final String MEETING_CREATED = "idMeetingCreated";
+    public static final String MEETING_VOTED = "idMeetingVoted";
     public static final String TOKEN = "token";
     public static final String DATE = "date";
     public static final String CHOIX_DATE = "choixDate";

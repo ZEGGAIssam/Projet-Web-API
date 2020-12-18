@@ -30,7 +30,7 @@ public class FirebaseServiceUser {
         List<QueryDocumentSnapshot> documentReference = dbFireStore.collection(USERS).whereEqualTo(LOGIN, login).get().get().getDocuments();
         if (documentReference.size() == 1) {
             QueryDocumentSnapshot document = documentReference.get(0);
-            User p = new User(document.getString(ID), document.getString(FIRSTNAME), document.getString(NAME), document.getString(LOGIN), document.getString(PWD), new ArrayList<String>());
+            User p = new User(document.getString(ID), document.getString(FIRSTNAME), document.getString(NAME), document.getString(LOGIN), document.getString(PWD), (ArrayList<String>) document.get(MEETING_VOTED),(ArrayList<String>)  document.get(MEETING_CREATED));
             return p;
         } else {
             return null;

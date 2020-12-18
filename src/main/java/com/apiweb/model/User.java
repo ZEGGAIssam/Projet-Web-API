@@ -19,15 +19,17 @@ public class User {
     private String username;
     private String password;
     private ArrayList<String> idMeetingVoted;
+    private ArrayList<String> idMeetingCreated;
 
 
-    public User(String id, String firstname, String name, String username, String password, ArrayList<String> idMeetingVoted) {
+    public User(String id, String firstname, String name, String username, String password, ArrayList<String> idMeetingVoted, ArrayList<String> idMeetingCreated) {
         this.id = id;
         this.firstname = firstname;
         this.name = name;
         this.username = username;
         this.password = password;
         this.idMeetingVoted = idMeetingVoted;
+        this.idMeetingCreated = idMeetingCreated;
     }
 
     public User(String firstname, String name, String username, String password) {
@@ -37,6 +39,7 @@ public class User {
         this.username = username;
         this.password = password;
         this.idMeetingVoted = new ArrayList<String>();
+        this.idMeetingCreated = new ArrayList<String>();
     }
 
     public String toString() {
@@ -69,13 +72,30 @@ public class User {
         return pwd.equals(this.password);
     }
 
-    public void addId(String id) {
+    public void addIdVoted(String id) {
         idMeetingVoted.add(id);
+    }
+
+    public void addIdCreated(String id) {
+        idMeetingCreated.add(id);
+    }
+
+    public void removeIdVoted(String id) {
+        idMeetingVoted.remove(id);
+    }
+
+    public void removeIdCreated(String id) {
+        idMeetingCreated.remove(id);
     }
 
     public ArrayList<String> getIdMeetingVoted()
     {
         return  idMeetingVoted;
+    }
+
+    public ArrayList<String> getIdMeetingCreated()
+    {
+        return  idMeetingCreated;
     }
 
     public void setName(String name) {
