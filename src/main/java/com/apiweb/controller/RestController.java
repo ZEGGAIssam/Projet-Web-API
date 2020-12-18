@@ -70,9 +70,7 @@ public class RestController {
             MeetingPoll meetingPoll = new MeetingPoll(json.get(NAME).toString(), choixDate, choixLoc);
             FirebaseServiceMeetingPoll.add(meetingPoll);
             return "1";
-        }
-        else
-        {
+        } else {
             return "0";
         }
 
@@ -93,10 +91,8 @@ public class RestController {
             FirebaseServiceMeetingPoll.saveMeeting(current_meeting);
             FirebaseServiceUser.save(current_user);
             return "1";
-        }
-        else
-        {
-            return  "0";
+        } else {
+            return "0";
         }
     }
 
@@ -107,5 +103,14 @@ public class RestController {
         } else {
             return "0";
         }
+    }
+
+    @DeleteMapping("/deleteAMeeting")
+    public Object deleteAMeeting(@RequestBody Map<String, Object> json, @CookieValue(TOKEN) String token) throws InterruptedException, ExecutionException {
+        User current_user = Authentification.getByToken(json.get(TOKEN).toString());
+        if (current_user != null)
+            FirebaseServiceMeetingPoll.deleteMeeting(json.get(ID).toString());
+        return "1";
+
     }
 }
