@@ -1,90 +1,89 @@
-body{
-  margin: 0;
-  padding: 0;
-}
 .box{
-  background-color:white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height:80vh;
-  padding: 50px;
+    margin-left:250px;
 }
 .boxBackground{
     background-color:#7d7d7d;
-    margin-left: 250px;
+    border-radius: 40px;
     padding-top: 35px;
     padding-bottom: 35px;
     padding-left: 35px;
     padding-right: 35px;
-    border-radius: 40px;
     width: 80%;
-}
-.buttonSubmit {
-  margin:0px auto;
-  display:block;
-  cursor:pointer;
+    margin-top: 20%;
 }
 
-input{
-  margin:auto;
-  padding:10px;
-  border-radius: 10px;
-  width: auto;
+
+.meetingName{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.meetinglabel{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 200px;
 }
 
-input[type="date"]{
-  margin-left: 13.5px;
+.meetinginput{
+  border-radius: 8px;
+  width: 20%;
 }
 
-input[type="submit"]{
-  display:block;
-  margin:auto;
-  padding:10px;
-  border-radius: 10px;
-  width: auto;
-}
 
-input[type="text"]{
-  padding:10px;
-  border-radius: 10px;
-  margin-top:0px;
-  margin-bottom: 0px;
-}
-
-p{
-  margin:0;
-  padding:0;
-}
 .leftbox {
     float:left;
-    margin-top: 70px;
-    margin-left: 250px;
-    margin-right: 8%;
-    width:275px;
-    height:20%;}
+    height:20%;
+    margin-left:15px;
+}
 .middlebox{
     float:left;
-    margin-top: 70px;
-    margin-right: 8%;
-    width:275px;
     height:20%;
+    margin-left:15px;
 }
 .rightbox{
     float:left;
-    margin-top: 70px;
-    margin-right: 8%;
-    width:275px;
     height:20%;
+    margin-left:15px;
 }
 
-.meetingName{
-    text-align:center;
-    font-size:1.6em;
-    margin-bottom: 20px;
+.locationinput{
+  width: 160px;
+  border-radius: 10px;
+}
+
+label {
+  display: inline-block;
+  width: 100px;
+}
+
+.dateinput{
+  width: 160px;
+  border-radius: 10px;
+}
+
+.locationBox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.dateBox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
 }
 
 .meetingSend{
-  float:center;
-  margin-top: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  width: 160px;
+  margin-top: 50px;
+}
+
+.buttoninput{
+    border-radius: 10px;
+    width: 100%;
 }

@@ -11,6 +11,8 @@ $(document).ready(function(){
             {
                 var i=0;
                 var position=["leftbox", "middlebox", "rightbox"];
+                var divBox = document.createElement("div");
+                divBox.classList.add("box");
                 jQuery.each(response, function() {
                     var rdLoc = [];
                     var rdDate = [];
@@ -95,10 +97,11 @@ $(document).ready(function(){
 
                     }
                     divMeeting.appendChild(vote);
-                    document.body.appendChild(divMeeting);
+                    divBox.appendChild(divMeeting);
 
                     i++;
                 });
+                document.body.appendChild(divBox);
             }
         }
     });

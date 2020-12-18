@@ -3,20 +3,20 @@ body{
   padding: 0;
 }
 .box{
-  background-color:white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height:100vh;
-  padding: 50px;
+    margin-left:250px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .boxBackground{
     background-color:#7d7d7d;
+    border-radius: 40px;
     padding-top: 35px;
     padding-bottom: 35px;
-    padding-left: 100px;
-    padding-right: 100px;
-    border-radius: 40px;
+    padding-left: 35px;
+    padding-right: 35px;
+    width: 40%;
+    margin-top: 20%;
 }
 .buttonSubmit {
   margin:0px auto;
