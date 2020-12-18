@@ -13,6 +13,7 @@ $(document).ready(function() {
             data: JSON.stringify({name:name, firstname:firstname}),
             success: function (response) {
                 if (response == 1) {
+
                     alert("User updated successfully !");
                 } else {
 
