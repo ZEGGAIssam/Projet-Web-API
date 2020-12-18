@@ -31,7 +31,7 @@ public class Authentification {
         String authId = GenerateId.generateID();
         String oldAuthId = "";
         for (Authentification authentification : authArray.values()) {
-            if (authentification.user.equals(user))
+            if (authentification.user.getId().equals(user.getId()))
             {
               oldAuthId = authentification.id;
             }

@@ -1,0 +1,26 @@
+body{
+  margin: 0;
+  padding: 0;
+}
+.box{
+  background-color:white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height:100vh;
+}
+.boxBackground{
+    background-color:black;
+    padding: 25px;
+    border-radius: 40px;
+}
+.buttonSubmit {
+  margin:0px auto;
+  display:block;
+  cursor:pointer;
+}
+
+input{
+padding:10px;
+border-radius: 10px;
+}

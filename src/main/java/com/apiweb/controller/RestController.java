@@ -25,19 +25,17 @@ public class RestController {
 
     //user routed
     @PostMapping("/login")
-    public String getCurrentUser(@RequestBody  Map<String, Object> json, HttpServletResponse response) throws InterruptedException, ExecutionException {
+    public String getCurrentUser(@RequestBody Map<String, Object> json, HttpServletResponse response) throws InterruptedException, ExecutionException {
         User current_user = FirebaseServiceUser.getConnected(json.get(LOGIN).toString());
-        if (current_user != null && current_user.verifiedPsw(json.get(PWD).toString()))
-        {
+        if (current_user != null && current_user.verifiedPsw(json.get(PWD).toString())) {
             System.out.println(current_user);
-            response.setHeader("Set-Cookie", TOKEN+"=" + Authentification.generateToken(current_user) + ";HttpOnly; SameSite=strict");
+            response.setHeader("Set-Cookie", TOKEN + "=" + Authentification.generateToken(current_user) + ";HttpOnly; SameSite=strict");
             return "1";
-        }
-        else
-        {
+        } else {
             return "0";
         }
     }
+
     @PostMapping("/register")
     public String addUser(@RequestBody Map<String, Object> json) throws ExecutionException, InterruptedException {
         if (!FirebaseServiceUser.getLoginAlreadyExist(json.get(LOGIN).toString())) {
@@ -50,27 +48,33 @@ public class RestController {
     }
 
     @PostMapping("/updateUser")
-    public String updateUser(@RequestBody Map<String, Object> json) throws ExecutionException, InterruptedException, FirebaseAuthException {
-            User current_user = FirebaseServiceUser.getConnected("aschneider2");
-            current_user.setName(json.get(NAME).toString());
-            current_user.setFirstname(json.get(FIRSTNAME).toString());
-            FirebaseServiceUser.save(current_user);
-            return"Updated user"+ current_user.getName()+ current_user.getFirstname();
-        }
+    public String updateUser(@RequestBody Map<String, Object> json, @CookieValue(TOKEN) String token) throws ExecutionException, InterruptedException, FirebaseAuthException {
+        User current_user = Authentification.getByToken(token);
+        current_user.setName(json.get(NAME).toString());
+        current_user.setFirstname(json.get(FIRSTNAME).toString());
+        FirebaseServiceUser.save(current_user);
+        return "Updated user" + current_user.getName() + current_user.getFirstname();
+    }
 
     @PostMapping("/createMeetingPoll")
-    public String addMeetingPoll(@RequestBody Map<String, Object> json) throws InterruptedException, ExecutionException, ParseException {
-        HashMap choixDate = new HashMap<Date, Long>();
-        choixDate.put(json.get("date1").toString(), 0);
-        choixDate.put(json.get("date2").toString(), 0);
-        choixDate.put(json.get("date3").toString(), 0);
-        HashMap choixLoc = new HashMap<String, Long>();
-        choixLoc.put(json.get("location1").toString(), 0);
-        choixLoc.put(json.get("location2").toString(), 0);
-        choixLoc.put(json.get("location3").toString(), 0);
-        MeetingPoll meetingPoll = new MeetingPoll(json.get(NAME).toString(), choixDate, choixLoc );
-        FirebaseServiceMeetingPoll.add(meetingPoll);
-        return "1";
+    public String addMeetingPoll(@RequestBody Map<String, Object> json, @CookieValue(TOKEN) String token) throws InterruptedException, ExecutionException, ParseException {
+        if (Authentification.isValid(token)) {
+            HashMap choixDate = new HashMap<Date, Long>();
+            choixDate.put(json.get("date1").toString(), 0);
+            choixDate.put(json.get("date2").toString(), 0);
+            choixDate.put(json.get("date3").toString(), 0);
+            HashMap choixLoc = new HashMap<String, Long>();
+            choixLoc.put(json.get("location1").toString(), 0);
+            choixLoc.put(json.get("location2").toString(), 0);
+            choixLoc.put(json.get("location3").toString(), 0);
+            MeetingPoll meetingPoll = new MeetingPoll(json.get(NAME).toString(), choixDate, choixLoc);
+            FirebaseServiceMeetingPoll.add(meetingPoll);
+            return "1";
+        }
+        else
+        {
+            return "0";
+        }
 
     }
 
@@ -78,21 +82,30 @@ public class RestController {
     @GetMapping("/getMeeting")
     public String getMeeting(@RequestBody Map<String, Object> json) throws InterruptedException, ExecutionException {
         current_meeting = FirebaseServiceMeetingPoll.get(json.get(ID).toString());
-        return  current_meeting.getName();
+        return current_meeting.getName();
     }
 
     @PostMapping("/saveVote")
-    public void addVoteLocation(@RequestBody Map<String, Object> json) throws InterruptedException, ExecutionException, ParseException {
+    public String addVoteLocation(@RequestBody Map<String, Object> json, @CookieValue(TOKEN) String token) throws InterruptedException, ExecutionException, ParseException {
         User current_user = Authentification.getByToken(json.get(TOKEN).toString());
-        current_meeting.addVote(json.get("voteLocation").toString(), json.get("voteDate").toString(), current_user);
-        FirebaseServiceMeetingPoll.saveMeeting(current_meeting);
-        FirebaseServiceUser.save(current_user);
+        if (current_user != null) {
+            current_meeting.addVote(json.get("voteLocation").toString(), json.get("voteDate").toString(), current_user);
+            FirebaseServiceMeetingPoll.saveMeeting(current_meeting);
+            FirebaseServiceUser.save(current_user);
+            return "1";
+        }
+        else
+        {
+            return  "0";
+        }
     }
 
     @GetMapping("/getAllMeeting")
-    public ArrayList<Object> getAllMeeting(HttpServletRequest resquest) throws InterruptedException, ExecutionException {
-        resquest.getCookies();
-        return FirebaseServiceMeetingPoll.getAll();
+    public Object getAllMeeting(@CookieValue(TOKEN) String token) throws InterruptedException, ExecutionException {
+        if (Authentification.isValid(token)) {
+            return FirebaseServiceMeetingPoll.getAll();
+        } else {
+            return "0";
+        }
     }
-
 }

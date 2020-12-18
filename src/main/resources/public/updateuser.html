@@ -7,10 +7,19 @@
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
         <script src='js/var.js'> </script>
         <script src='js/updateuser.js'> </script>
+        <script>
+        $(function(){
+            $("#mySidenav").load("nav.html");
+        });
+        </script>
+       <link rel="stylesheet" href="css/nav.css">
    </head>
    <body>
-         <p>Update Name: <input id="nameUpdate" type="text" name="name"></p>
-         <p>Update FirstName: <input id="firstnameUpdate" type="text" name="firstname"></p>
-         <p><input id="updateuser" type="submit" value= "Update the fields !"></p>
+        <div id="mySidenav" class="sidenav"></div>
+        <div class="mainDiv">
+            <p>Update Name: <input id="nameUpdate" type="text" name="name"></p>
+            <p>Update FirstName: <input id="firstnameUpdate" type="text" name="firstname"></p>
+            <p><input id="updateuser" type="submit" value= "Update the fields !"></p>
+        </div>
    </body>
 </html>

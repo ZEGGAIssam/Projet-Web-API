@@ -1,0 +1,25 @@
+.meetingDiv{
+  display: inline-block;
+  background-color:grey;
+  padding : 5px 15px 5px 15px;
+  border-radius: 10px;
+ }
+div{
+  margin: 5px;
+}
+.meetingLocation{
+ display: : inline-block;
+  margin: 15px 0px;
+}
+.meetingLocation div{
+   display: inline-block;
+}
+
+.meetingDate div{
+   display: inline-block;
+}
+.buttonSubmit {
+  margin:0px auto;
+  display:block;
+  cursor:pointer;
+}

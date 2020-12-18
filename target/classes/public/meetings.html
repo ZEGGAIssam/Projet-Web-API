@@ -6,21 +6,16 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src='js/var.js'> </script>
     <script src='js/meetings.js'> </script>
+    <script>
+    $(function(){
+      $("#mySidenav").load("nav.html");
+    });
+    </script>
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/meetings.css">
 
 </head>
     <body>
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>name</th>
-                        <th>id</th>
-
-                    </tr>
-                </thead>
-                <tbody id="data">
-                </tbody>
-            </table>
-        </div>
+        <div id="mySidenav" class="sidenav"></div>
     </body>
 </html>

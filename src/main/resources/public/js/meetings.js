@@ -4,9 +4,9 @@ $(document).ready(function(){
         type:GET,
         success:function(response){
             console.log(response)
-            if(response == '')
+            if(response == 0)
             {
-                alert("no meetings");
+                alert("token problem");
             }
             else
             {
@@ -15,17 +15,55 @@ $(document).ready(function(){
                 });
 
                 jQuery.each(response, function() {
-                    var body = document.body
+                    var divMeeting = document.createElement("div");
+                    divMeeting.classList.add("meetingDiv");
+                    divMeeting.classList.add("mainDiv");
+                    var divName = document.createElement("div");
+                    divName.classList.add("meetingName");
+                    divName.appendChild(document.createTextNode(this["name"]));
+                    divMeeting.appendChild(divName);
+                    var divLocation = document.createElement("div");
+                    divLocation.classList.add("meetingLocation");
+                    divLocation.appendChild(document.createTextNode("Location :"));
+                    var br =  document.createElement("br");
+                    divLocation.appendChild(br);
+                    jQuery.each(this["choixLocation"], function(key, value) {
+                        var divInputLoc = document.createElement("div");
+                        var inputLoc = document.createElement("input");
+                        inputLoc.type = "radio";
+                        inputLoc.id = key
+                        inputLoc.value = key
+                        var labelLoc = document.createElement("label");
+                        labelLoc.appendChild(document.createTextNode(key));
+                        divInputLoc.appendChild(inputLoc);
+                        divInputLoc.appendChild(labelLoc);
+                        divLocation.appendChild(divInputLoc);
+                    });
+                    divMeeting.appendChild(divLocation);
 
-                    console.log(this["name"])
-                    console.log(this["choixDate"])
-                    console.log(this["id"])
-                    console.log(this["choixLocation"])
-
-                    var a = document.createElement("p");
-                    a.appendChild(document.createTextNode(this["name"]));
-                    document.body.appendChild(a);
-                    document.body.appendChild(document.createElement("p"));
+                    var divDate = document.createElement("div");
+                    divDate.classList.add("meetingDate");
+                    divDate.appendChild(document.createTextNode("Date :"));
+                    divDate.appendChild(br);
+                    jQuery.each(this["choixDate"], function(key, value) {
+                        var divInputDate = document.createElement("div");
+                        var inputDate = document.createElement("input");
+                        inputDate.type = "radio";
+                        inputDate.id = key;
+                        inputDate.value = key;
+                        var labelDate = document.createElement("label");
+                        labelDate.appendChild(document.createTextNode(key));
+                        divInputDate.appendChild(inputDate);
+                        divInputDate.appendChild(labelDate);
+                        divDate.appendChild(divInputDate);
+                    });
+                    divMeeting.appendChild(divDate);
+                    var vote = document.createElement("input");
+                    vote.type = "submit";
+                    vote.name = "Vote;"
+                    vote.classList.add("buttonSubmit");
+                    divMeeting.appendChild(vote);
+                    document.body.appendChild(divMeeting);
                 });
             }
         }

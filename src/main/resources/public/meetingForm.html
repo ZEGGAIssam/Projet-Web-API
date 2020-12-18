@@ -6,70 +6,24 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src='js/var.js'> </script>
     <script src='js/meetingAdd.js'> </script>
-
-    <style>
-          body{
-              margin: 0;
-              padding: 0;
-          }
-          .box{
-          	  background-color:#f7cff7;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              height:100vh;
-          }
-          .boxBackground{
-          	  background-color:#b3ccff;
-              padding: 25px;
-              border-radius: 40px;
-          }
-          .limit{
-              border: 2px solid black;
-          }
-          ::-webkit-input-placeholder {
-               text-align: center;
-          }
-		  .center {
-              margin:0px auto;
-              display:block;
-          }
-          input[type=text], input[type=password]{
-          	background-color:#ccddff;
-          	border-radius: 40px;
-            border-top-style: hidden;
-            border-right-style: hidden;
-            border-left-style: hidden;
-            border-bottom-style: hidden;
-		}
-        input[type=submit]{
-        	background-color:#ccddff;
-        	padding:10px;
-          	border-radius: 10px;
-		}
-		input[type=date]{
-        	background-color:#ccddff;
-        	padding:10px;
-          	border-radius: 10px;
-            border-top-style: hidden;
-            border-right-style: hidden;
-            border-left-style: hidden;
-            border-bottom-style: hidden;
-		}
-      </style>
+    <script>
+    $(function(){
+      $("#mySidenav").load("nav.html");
+    });
+    </script>
+    <link rel="stylesheet" href="css/nav.css">
 </head>
     <body>
-        <div class="box">
-            <div class="boxBackground">
-                <input id="nameMeeting" type="text" name="username" placeholder="Username"><br><br>
+        <div id="mySidenav" class="sidenav"></div>
+        <div class="mainDiv">
+                <input id="nameMeeting" type="text" name="name" placeholder="Username"><br><br>
                 <input id="location1" type="text" placeholder="Location 1"><br><br>
                 <input id="location2" type="text" placeholder="Location 2"><br><br>
                 <input id="location3" type="text" placeholder="Location 3"><br><br>
-                <input id="date1" type="date" placeholder="Date 1" class="center"><br><br>
-                <input id="date2" type="date" placeholder="Date 2" class="center"><br><br>
-                <input id="date3" type="date" placeholder="Date 3" class="center"><br><br>
-                <input id="meetingSend" type="submit" value= "Ajouter Rendez-vous" class="center">
-            </div>
+                <input id="date1" type="date" placeholder="Date 1" ><br><br>
+                <input id="date2" type="date" placeholder="Date 2" ><br><br>
+                <input id="date3" type="date" placeholder="Date 3" ><br><br>
+                <input id="meetingSend" type="submit" value= "Add Meeting Survey" >
         </div>
     </body>
 </html>

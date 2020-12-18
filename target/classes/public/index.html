@@ -6,61 +6,15 @@
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript"  src='js/var.js'> </script>
     <script type="text/javascript"  src='js/login.js'> </script>
-
-    <style>
-          body{
-              margin: 0;
-              padding: 0;
-          }
-          .box{
-          	  background-color:#f7cff7;
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              height:100vh;
-          }
-          .boxBackground{
-          	  background-color:#b3ccff;
-              padding: 25px;
-              border-radius: 40px;
-          }
-          .limit{
-              border: 2px solid black;
-          }
-          ::-webkit-input-placeholder {
-               text-align: center;
-          }
-		  .center {
-              margin:0px auto;
-              display:block;
-          }
-          input[type=text], input[type=password]{
-          	background-color:#ccddff;
-          	border-radius: 40px;
-            border-top-style: hidden;
-            border-right-style: hidden;
-            border-left-style: hidden;
-            border-bottom-style: hidden;
-		}
-        input[type=submit]{
-        	background-color:#ccddff;
-        	padding:10px;
-          	border-radius: 10px;
-            border-top-style: hidden;
-            border-right-style: hidden;
-            border-left-style: hidden;
-            border-bottom-style: hidden;
-		}
-      </style>
+    <link rel="stylesheet" href="css/index.css">
 </head>
     <body>
         <div class="box">
             <div class="boxBackground">
                 <input id="usernameLogin" type="text" name="username" placeholder="Login"><br><br>
                 <input id="passwordLogin" type="password" name="password" placeholder="Password"><br><br>
-                <input id="loginSend" type="submit" value= "Login" class="center"><br><br><br>
-                <input id="test" type="submit" value= "Login" class="center"><br><br><br>
-                <input id="registerPage" type="submit" value= "Or register here" class="center"><br>
+                <input id="loginSend" type="submit" value= "Login" class="buttonSubmit"><br><br><br>
+                <input id="registerPage" type="submit" value= "Or register here" class="buttonSubmit"><br>
             </div>
         </div>
     </body>
