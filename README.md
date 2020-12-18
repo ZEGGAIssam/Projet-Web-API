@@ -25,4 +25,4 @@ Qu'allez-vous trouver dans notre section [Documentation](https://github.com/ZEGG
 
 3. La documentation sur *[Les Spécifications](https://github.com/ZEGGAIssam/Projet-Web-API/blob/master/Documentation/Les%20Sp%C3%A9cifications.md)* comportant :
 
-  - La décomposition en modules du site web
+  - La décomposition en modules du site web (Screenshots du website)
