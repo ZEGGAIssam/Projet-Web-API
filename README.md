@@ -13,7 +13,7 @@ de l'ensemble du projet [ici](https://github.com/ZEGGAIssam/Projet-Web-API/tree/
 
 Qu'allez-vous trouver dans notre section [Documentation](https://github.com/ZEGGAIssam/Projet-Web-API/tree/master/Documentation) ?
 
-1. La documentation sur : *[L'Organisation du Projet](https://github.com/gcaugant56/Genie-Logiciel/tree/develop/doc/Documentation/Organisation%20du%20projet)*
+1. La documentation sur : *[L'Organisation du Projet](https://github.com/ZEGGAIssam/Projet-Web-API/blob/master/Documentation/Organisation%20du%20Projet.md)*
   - La méthode de développement de projet choisie avec un argumentaire et les pratiques appliquées.
   - La vision Gestion de Projet avec descriptif de la répartition des tâches et état d'avancement en fonction du temps.
 
