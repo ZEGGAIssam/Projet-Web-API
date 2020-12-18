@@ -58,23 +58,23 @@ p{
 }
 .leftbox {
     float:left;
-    margin-top: 20px;
+    margin-top: 70px;
     margin-left: 250px;
-    margin-right: 10%;
-    width:15%;
+    margin-right: 8%;
+    width:275px;
     height:20%;}
 .middlebox{
     float:left;
-    margin-top: 20px;
-    margin-right: 10%;
-    width:15%;
+    margin-top: 70px;
+    margin-right: 8%;
+    width:275px;
     height:20%;
 }
 .rightbox{
     float:left;
-    margin-top: 20px;
-    margin-right: 10%;
-    width:15%;
+    margin-top: 70px;
+    margin-right: 8%;
+    width:275px;
     height:20%;
 }
 
