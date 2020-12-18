@@ -61,13 +61,30 @@ $(document).ready(function(){
                     });
                     divMeeting.appendChild(divDate);
                     var vote = document.createElement("input");
-                    vote.type = "submit";
-                    vote.value = "Delete"
+                    vote.type="submit";
+                    vote.value = "Delete";
                     vote.classList.add("buttonSubmit");
+                    var id = this["id"];
+                    vote.onclick = function(){
+                        $.ajax({
+                            url:"http://localhost:8080/deleteAMeeting",
+                            type:POST,
+                            data:JSON.stringify({id:id}),
+                            success:function(response){
+                                console.log(response)
+                                if(response == 1){
+                                    return window.location.href="http://localhost:8080/mymeetings.html";
+                                }else{
+                                    alert("can't delete");
+                                }
+                            }
+                        });
+                    };
                     divMeeting.appendChild(vote);
                     document.body.appendChild(divMeeting);
                 });
             }
         }
     })
+
 });

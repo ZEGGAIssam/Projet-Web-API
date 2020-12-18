@@ -80,6 +80,14 @@ public class User {
         idMeetingCreated.add(id);
     }
 
+    public void removeIdVoted(String id) {
+        idMeetingVoted.remove(id);
+    }
+
+    public void removeIdCreated(String id) {
+        idMeetingCreated.remove(id);
+    }
+
     public ArrayList<String> getIdMeetingVoted()
     {
         return  idMeetingVoted;

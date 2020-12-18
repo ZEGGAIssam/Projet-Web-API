@@ -113,12 +113,19 @@ public class RestController {
             return "0";
         }
     }
-    @DeleteMapping("/deleteAMeeting")
+    @PostMapping("/deleteAMeeting")
     public Object deleteAMeeting(@RequestBody Map<String, Object> json, @CookieValue(TOKEN) String token) throws InterruptedException, ExecutionException {
-        User current_user = Authentification.getByToken(json.get(TOKEN).toString());
-        if (current_user != null)
+        User current_user = Authentification.getByToken(token);
+        if (current_user != null) {
             FirebaseServiceMeetingPoll.deleteMeeting(json.get(ID).toString());
-        return "1";
+            current_user.removeIdCreated(json.get(ID).toString());
+            FirebaseServiceUser.save(current_user);
+            return "1";
+        }
+        else
+        {
+            return "0";
+        }
     }
 
 
