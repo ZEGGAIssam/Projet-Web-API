@@ -13,7 +13,7 @@
     });
     </script>
     <link rel="stylesheet" href="css/nav.css">
-    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/MeetingForm.css">
     <link rel="stylesheet" href="css/mvpMeetingForm.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
@@ -24,14 +24,30 @@
         </div>
         <div class="box">
             <div class="boxBackground">
-                <input id="nameMeeting" type="text" name="name" placeholder="Username"><br><br>
-                <input id="location1" type="text" placeholder="Location 1"><br><br>
-                <input id="location2" type="text" placeholder="Location 2"><br><br>
-                <input id="location3" type="text" placeholder="Location 3"><br><br>
-                <input id="date1" type="date" placeholder="Date 1" ><br><br>
-                <input id="date2" type="date" placeholder="Date 2" ><br><br>
-                <input id="date3" type="date" placeholder="Date 3" ><br><br>
-                <input id="meetingSend" type="submit" value= "Add Meeting Survey" >
+                <div class="meetingName">
+                    <p style="color: white;">Meeting name</p><input id="nameMeeting" type="text" name="name" placeholder="MeetingName">
+                </div>
+                <div class="leftbox">
+                    <p style="color: white;">Location 1</p><input id="location1" type="text" placeholder="Location 1">
+                </div>
+                <div class="middlebox">
+                    <p style="color: white;">Location 2</p><input id="location2" type="text" placeholder="Location 2">
+                </div>
+                <div class="rightbox">
+                    <p style="color: white;">Location 3</p><input id="location3" type="text" placeholder="Location 3">
+                </div>
+                <div class="leftbox">
+                    <p style="color: white;" >Date 1</p><input id="date1" type="date" placeholder="Date 1" >
+                </div>
+                <div class="middlebox">
+                    <p style="color: white;" >Date 2</p><input id="date2" type="date" placeholder="Date 2" >
+                </div>
+                <div class="rightbox">
+                    <p style="color: white;">Date 3</p><input id="date3" type="date" placeholder="Date 3" >
+                </div>
+                <div class="meetingSend">
+                    <input id="meetingSend" type="submit" value= "Add Meeting Survey" >
+                </div>
             </div>
         </div>
     </body>

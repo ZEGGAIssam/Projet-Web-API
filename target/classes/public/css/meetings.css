@@ -6,7 +6,7 @@
 }
 
 .meetingLocation{
-    display: inline-block;
+    display: : inline-block;
     margin: 15px 0px;
 }
 .meetingLocation div{
@@ -31,14 +31,14 @@
 }
 .middlebox{
     float:left;
-    background-color:#ababab;
+    background-color:#7d7d7d;
     margin-top: 20px;
     width:20%;
     height:280px;
 }
 .rightbox{
     float:right;
-    background-color:#cfcfcf;
+    background-color:#7d7d7d;
     margin-top: 20px;
     margin-right: 225px;
     width:20%;

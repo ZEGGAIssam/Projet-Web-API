@@ -7,16 +7,18 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-  height:100vh;
+  height:80vh;
   padding: 50px;
 }
 .boxBackground{
-    background-color:black;
+    background-color:#7d7d7d;
+    margin-left: 250px;
     padding-top: 35px;
     padding-bottom: 35px;
-    padding-left: 100px;
-    padding-right: 100px;
+    padding-left: 35px;
+    padding-right: 35px;
     border-radius: 40px;
+    width: 80%;
 }
 .buttonSubmit {
   margin:0px auto;
@@ -53,4 +55,36 @@ input[type="text"]{
 p{
   margin:0;
   padding:0;
+}
+.leftbox {
+    float:left;
+    margin-top: 20px;
+    margin-left: 250px;
+    margin-right: 10%;
+    width:15%;
+    height:20%;}
+.middlebox{
+    float:left;
+    margin-top: 20px;
+    margin-right: 10%;
+    width:15%;
+    height:20%;
+}
+.rightbox{
+    float:left;
+    margin-top: 20px;
+    margin-right: 10%;
+    width:15%;
+    height:20%;
+}
+
+.meetingName{
+    text-align:center;
+    font-size:1.6em;
+    margin-bottom: 20px;
+}
+
+.meetingSend{
+  float:center;
+  margin-top: 25%;
 }
