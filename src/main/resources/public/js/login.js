@@ -7,7 +7,7 @@ $(document).ready(function(){
         window.Toastify({
             text: "User has been created successfully !"
         }).showToast()
-// 1) import Toastify library Js sur notre page index.html = page de login
+        // 1) import Toastify library Js sur notre page index.html = page de login
         // importer le style de cet library .js - on a rediriger l'user sur la page index.html avec une query registersuccess (qui permet de verif que l'user a bien été crée)
         // à l'arrivé de l'user sur cette page on vérifie que cette query existe, et si query=exist alors on a utilisé la library toastify pour afficher un msg
         // query = valeur à une page pour que la page

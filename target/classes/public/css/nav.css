@@ -41,5 +41,11 @@
 }
 
 .mainDiv{
-  margin-left: 200px;
+  margin-left: 100px;
 }
+
+.LogOut{
+   display: flex;
+   align-items: bottom;
+}
+

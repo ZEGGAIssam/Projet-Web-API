@@ -14,7 +14,6 @@
                         var msg = "";
                         console.log(response)
                         if(response == 1){
-
                             return window.location.href="http://localhost:8080/index.html?register_success=true";
                         }else{
                             alert("The user created already exists !");

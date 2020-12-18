@@ -14,10 +14,13 @@ $(document).ready(function(){
                         console.log(row);
                 });
 
+                var i=0;
+                var position=["leftbox", "middlebox", "rightbox"];
                 jQuery.each(response, function() {
                     var divMeeting = document.createElement("div");
                     divMeeting.classList.add("meetingDiv");
                     divMeeting.classList.add("mainDiv");
+                    divMeeting.classList.add(position[i%3]);
                     var divName = document.createElement("div");
                     divName.classList.add("meetingName");
                     divName.appendChild(document.createTextNode(this["name"]));
@@ -64,6 +67,8 @@ $(document).ready(function(){
                     vote.classList.add("buttonSubmit");
                     divMeeting.appendChild(vote);
                     document.body.appendChild(divMeeting);
+
+                    i++;
                 });
             }
         }

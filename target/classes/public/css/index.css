@@ -8,10 +8,11 @@ body{
   justify-content: center;
   align-items: center;
   height:100vh;
+  padding: 50px;
 }
 .boxBackground{
     background-color:black;
-    padding: 25px;
+    padding: 50px;
     border-radius: 40px;
 }
 .buttonSubmit {
@@ -21,6 +22,20 @@ body{
 }
 
 input{
-padding:10px;
-border-radius: 10px;
+  margin:auto;
+  padding:10px;
+  border-radius: 10px;
+  width: auto;
+}
+
+input[type="date"]{
+  margin-left: 13.5px;
+}
+
+input[type="submit"]{
+  display:block;
+  margin:auto;
+  padding:10px;
+  border-radius: 10px;
+  width: auto;
 }

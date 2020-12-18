@@ -4,7 +4,7 @@ import com.apiweb.model.Authentification;
 import com.apiweb.model.MeetingPoll;
 import com.apiweb.model.User;
 import com.google.firebase.auth.FirebaseAuthException;
-import com.google.rpc.context.AttributeContext;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;

@@ -4,26 +4,35 @@
 <head>
     <title>Formulaire</title>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <script src='js/var.js'> </script>
     <script src='js/meetingAdd.js'> </script>
     <script>
-        $(function(){
-            $("#mySidenav").load("nav.html");
-        });
+    $(function(){
+      $("#mySidenav").load("nav.html");
+    });
     </script>
     <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/mvpMeetingForm.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
 </head>
-<body>
-<div id="mySidenav" class="sidenav"></div>
-<div class="mainDiv">
-    <input id="nameMeeting" type="text" name="name" placeholder="Username"><br><br>
-    <input id="location1" type="text" placeholder="Location 1"><br><br>
-    <input id="location2" type="text" placeholder="Location 2"><br><br>
-    <input id="location3" type="text" placeholder="Location 3"><br><br>
-    <input id="date1" type="date" placeholder="Date 1" ><br><br>
-    <input id="date2" type="date" placeholder="Date 2" ><br><br>
-    <input id="date3" type="date" placeholder="Date 3" ><br><br>
-    <input id="meetingSend" type="submit" value= "Add Meeting Survey" >
-</div>
-</body>
+    <body>
+        <div id="mySidenav" class="sidenav">
+
+        </div>
+        <div class="box">
+            <div class="boxBackground">
+                <input id="nameMeeting" type="text" name="name" placeholder="Username"><br><br>
+                <input id="location1" type="text" placeholder="Location 1"><br><br>
+                <input id="location2" type="text" placeholder="Location 2"><br><br>
+                <input id="location3" type="text" placeholder="Location 3"><br><br>
+                <input id="date1" type="date" placeholder="Date 1" ><br><br>
+                <input id="date2" type="date" placeholder="Date 2" ><br><br>
+                <input id="date3" type="date" placeholder="Date 3" ><br><br>
+                <input id="meetingSend" type="submit" value= "Add Meeting Survey" >
+            </div>
+        </div>
+    </body>
 </html>
